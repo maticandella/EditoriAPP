@@ -1,0 +1,43 @@
+<div class="bg-gray-700 text-orange-500 py-20">
+    <div class="container mt-10 w-full mx-auto grid lg:grid-cols-2 gap-5">
+        <!--Primer columna-->
+        <div class="mx-auto container w-90 grid grid-cols-1">
+            <img [src]="'../../../assets/img/authors/' + author.photo" 
+                 alt="Foto de {{ author.name }}" 
+                 class="shadow-md border rounded-md" />
+        </div>
+        <!--Segunda columna-->
+        <div>
+            <div class="flex items-center space-x-3 mb-4">
+                <img [src]="author.nationality?.flag" alt="{{ author.nationality?.name }} flag" class="w-10 h-auto transform transition-transform hover:scale-110 shadow-lg rounded-sm"/>
+                <h3 class="font-bold">{{ author.name }} {{ author.lastName }}</h3>
+            </div>
+            
+            <p class="font-Jost text-white xl:text-xl">{{ author.note }}</p>
+
+            <div class="social-media mb-4">
+                <div class="flex space-x-4 justify-end pt-4">
+                  <a *ngFor="let social of author.socialMediaAccounts" 
+                     [href]="social?.url" target="_blank" class="text-3xl text-orange-500 transition-transform transform hover:text-orange-600 hover:scale-150">
+                     <i [ngClass]="'ri-' + social.socialMediaType.icon + '-fill'"></i>
+                  </a>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div *ngIf="books.length > 0">
+      <div class="container mt-4 w-full text-center">
+        <h3 class="font-Jost font-bold">Sus libros</h3>
+      </div>
+      <div class="container mt-4 w-full grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 perspective-1000">
+        <div *ngFor="let book of books" class="relative md:w-auto sm:w-3/4 w-full group overflow-hidden border-r-4 border-b-2 border-amber-100 rounded-md shadow-lg cursor-pointer transform transition-transform duration-300 hover:shadow-2xl hover:-translate-y-2 h-80">
+          <a [href]="'book/' + book.id" class="block w-full h-full">
+            <img [src]="'../../../assets/img/books/' + book.photo" [alt]="'Foto del libro ' + book.title"
+                 class="book absolute w-full h-full object-cover sm:object-fill opacity-80 group-hover:opacity-30 transition duration-500">
+          </a>
+        </div> 
+      </div> 
+    </div>
+</div>
+

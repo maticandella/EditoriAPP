@@ -1,0 +1,40 @@
+<div class="container mx-auto text-center m-5 flex items-center justify-between border-t bg-gray-700 px-4 py-3 sm:px-6">
+    <!-- Botones móviles -->
+    <div class="flex flex-1 justify-between sm:hidden">
+      <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" 
+              class="relative inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+        Previous
+      </button>
+      <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages"
+              class="relative ml-3 inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+        Next
+      </button>
+    </div>
+  
+    <!-- Botones de paginación (pantallas más grandes) -->
+    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+        <p class="text-sm text-white">
+            Mostrando <span class="font-medium text-orange-500">{{ (currentPage - 1) * 10 + 1 }}</span> -
+            <span class="font-medium text-orange-500">{{ Math.min(currentPage * 10, totalResults) }}</span> de
+            <span class="font-medium text-orange-500">{{ totalResults }}</span> resultados
+          </p>
+      <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+        <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" 
+                class="relative inline-flex items-center px-2 py-2 rounded-l-md text-gray-400 ring-1 ring-gray-300 hover:bg-gray-300 hover:text-orange-500">
+          Anterior
+        </button>
+        <button *ngFor="let page of [].constructor(totalPages); let i = index" 
+                (click)="goToPage(i + 1)"
+                [class.bg-orange-500]="currentPage === i + 1"
+                [class.text-white]="currentPage === i + 1"
+                class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 hover:bg-gray-300 hover:text-orange-500">
+          {{ i + 1 }}
+        </button>
+        <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages" 
+                class="relative inline-flex items-center px-2 py-2 rounded-r-md text-gray-400 ring-1 ring-gray-300 hover:bg-gray-300 hover:text-orange-500">
+          Siguiente
+        </button>
+      </nav>
+    </div>
+  </div>
+  

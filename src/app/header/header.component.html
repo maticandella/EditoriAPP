@@ -1,0 +1,26 @@
+<header id="navbar" class="bg-slate-800 fixed w-full top-0 left-0 z-50">
+    <nav class="container flex items-center justify-between h-16 sm:h-20">
+        <div class="font-Lobster sm:text-2x1 title">EditoriApp</div>
+
+        <div
+          [ngClass]="{
+            'absolute top-0 left-0 min-h-[80vh] w-full bg-slate-800/80 backdrop-blur-sm flex items-center justify-center duration-300 lg:static lg:min-h-fit lg:bg-transparent lg:w-auto':
+              true,
+            'left-0': menuOpen,
+            'left-[-100%]': !menuOpen
+          }"
+          id="nav-menu"
+        >
+            <ul class="flex flex-col items-center gap-8 lg:flex-row">
+                <li *ngFor="let link of navLinks">
+                    <a href="{{ link.href }}" class="nav-link" (click)="toggleMenu()">{{ link.text }}</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Hamburger menu icon -->
+        <div class="text-xl sm:text-3x1 cursor-pointer z-50 lg:hidden" (click)="toggleMenu()">
+            <i [ngClass]="menuOpen ? 'ri-close-large-line' : 'ri-menu-4-line'" id="hamburguer"></i>
+        </div>
+    </nav>
+</header>

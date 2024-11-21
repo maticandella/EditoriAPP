@@ -14,7 +14,7 @@ export class HeaderComponent {
   navLinks = [
     { href: 'home', text: 'Inicio' },
     { href: 'authors', text: 'Autores' },
-    { href: '#popular', text: 'Libros' },
+    { href: 'books', text: 'Libros' },
     { href: '#review', text: 'Sobre Nosotros' }
   ];
 

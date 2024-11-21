@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Lobster&display=swap');
-@import 'swiper/css/bundle';
+@import 'swiper/swiper-bundle.min.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-    @apply bg-slate-800 text-white font-Jost tracking-wider;
+    @apply bg-crema text-white font-Jost tracking-wider;
 }
 
 h1 {

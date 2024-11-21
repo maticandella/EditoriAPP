@@ -1,27 +1,36 @@
 
-<div class="bg-gray-700 text-orange-500 py-20">
+<div class="bg-crema text-cafe-oscuro py-20">
   
   <div class="container mx-auto text-center m-5">
-    <h1 class="text-4xl font-bold text-orange-500 font-Jost">Autores</h1>
+    <h1 class="text-4xl font-bold text-cafe-oscuro font-Jost">Autores</h1>
   </div>
 
   <!--Buscador-->
   <div class="container mx-auto text-center flex w-96 rounded bg-white mt-0 mb-5">
-    <input type="search" placeholder="Buscar" class="w-full border-none bg-transparent px-2 py-1 text-gray-900 outline-none focus:outline-none"
+    <input type="search" placeholder="Buscar" class="w-full border-none bg-transparent px-2 py-1 text-cafe-oscuro outline-none focus:outline-none"
       [(ngModel)]="name" (keyup.enter)="search(1, 10, name)">
-    <button class="m-2 rounded px-4 py-1 text-gray-700 hover:text-orange-500" (click)="search(1, 10, name)">
+    <button class="m-2 rounded px-4 py-1 text-cafe-oscuro hover:text-verde-oliva" (click)="search(1, 10, name)">
       <i class="ri-search-line"></i>
     </button>
+  </div>
+
+  <div class="container mx-auto text-center flex w-96 rounded bg-white mt-0 mb-5">
+    <a 
+    *ngFor="let letter of alphabet" 
+    href="#" 
+    class="block text-cafe-oscuro hover:text-verde-oliva mx-2 my-1">
+    {{ letter }}
+  </a>
   </div>
 
     <div class="container w-full grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <div *ngFor="let author of authors" class="relative group overflow-hidden border rounded-md shadow-lg cursor-pointer transform transition-transform duration-300 hover:shadow-2xl hover:-translate-y-1 h-80">
         <a [href]="'author/' + author.id" class="block w-full h-full">
         <!-- Imagen de fondo -->
-        <img [src]="'../../../assets/img/authors/' + author.photo" alt="Foto del autor/a" class="absolute w-full h-full object-cover opacity-70 group-hover:opacity-30 transition duration-500">
+        <img [src]="'../../../assets/img/authors/' + author.photo" alt="Foto del autor/a" class="absolute w-full h-full object-cover opacity-70 group-hover:opacity-40 transition duration-500">
   
         <!-- Filtro oscuro en el fondo -->
-        <div class="absolute inset-0 bg-gray-700 opacity-40 group-hover:opacity-60 transition duration-500"></div>
+        <!-- <div class="absolute inset-0 group-hover:opacity-60 transition duration-500"></div> -->
         
         <!-- Nombre del autor, siempre visible -->
         <div class="absolute bottom-0 left-0 w-full text-center p-3">

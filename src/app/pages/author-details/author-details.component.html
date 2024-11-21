@@ -31,7 +31,7 @@
         <h3 class="font-Jost font-bold">Sus libros</h3>
       </div>
       <div class="container mt-4 w-full grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 perspective-1000">
-        <div *ngFor="let book of books" class="relative md:w-auto sm:w-3/4 w-full group overflow-hidden border-r-4 border-b-2 border-amber-100 rounded-md shadow-lg cursor-pointer transform transition-transform duration-300 hover:shadow-2xl hover:-translate-y-2 h-80">
+        <div *ngFor="let book of books" class="relative w-full group overflow-hidden border-r-4 border-b-2 border-amber-100 rounded-md shadow-lg cursor-pointer transform transition-transform duration-300 hover:shadow-2xl hover:-translate-y-2 h-80">
           <a [href]="'book/' + book.id" class="block w-full h-full">
             <img [src]="'../../../assets/img/books/' + book.photo" [alt]="'Foto del libro ' + book.title"
                  class="book absolute w-full h-full object-cover sm:object-fill opacity-80 group-hover:opacity-30 transition duration-500">

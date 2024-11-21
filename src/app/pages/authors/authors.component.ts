@@ -20,6 +20,7 @@ export class AuthorsComponent implements OnInit {
   totalAuthors: number = 0;
   currentPage: number = 1;
   name: string = '';
+  alphabet: string[] = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
   
   private authorService = inject(AuthorService);
   private router = inject(Router);
@@ -30,9 +31,9 @@ export class AuthorsComponent implements OnInit {
 
   getAuthorsPaginated(page: number, limit: number, order: string) {
     this.authorService.getAll(page, limit, order).subscribe(response => {
-      this.authors = response.data.authors;
+      this.authors = response.data.items;
       this.totalPages = response.data.totalPages;
-      this.totalAuthors = response.data.totalAuthors;
+      this.totalAuthors = response.data.totalItems;
       this.currentPage = page;
     });
   }
@@ -43,9 +44,9 @@ export class AuthorsComponent implements OnInit {
 
   search(page: number, limit: number, name: string) {
     this.authorService.search(page, limit, name).subscribe(response => {
-      this.authors = response.data.authors;
+      this.authors = response.data.items;
       this.totalPages = response.data.totalPages;
-      this.totalAuthors = response.data.totalAuthors;
+      this.totalAuthors = response.data.totalItems;
       this.currentPage = page;
     });
   }

@@ -7,5 +7,5 @@
 }
 
 .title {
-    @apply font-Lobster text-crema sm:text-2xl lg:text-3xl;
+    @apply font-Lobster text-beige sm:text-2xl lg:text-3xl;
 }

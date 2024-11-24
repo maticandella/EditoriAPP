@@ -1,4 +1,4 @@
-<div class="container mx-auto text-center m-5 flex items-center justify-between border-t border-cafe-oscuro bg-crema px-4 py-3 sm:px-6">
+<div class="container mx-auto text-center m-5 flex items-center justify-between border-t border-cafe-oscuro bg-gris-claro px-4 py-3 sm:px-6">
     <!-- Botones móviles -->
     <div class="flex flex-1 justify-between sm:hidden">
       <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" 
@@ -20,7 +20,7 @@
           </p>
       <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
         <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" 
-                class="relative inline-flex items-center px-2 py-2 rounded-l-md text-cafe-claro ring-1 ring-cafe-oscuro hover:bg-cafe-oscuro hover:text-white">
+                class="relative inline-flex items-center px-2 py-2 rounded-l-md text-cafe-intermedio ring-1 ring-cafe-oscuro hover:bg-cafe-oscuro hover:text-white">
           Anterior
         </button>
         <button *ngFor="let page of [].constructor(totalPages); let i = index" 
@@ -31,7 +31,7 @@
           {{ i + 1 }}
         </button>
         <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages" 
-                class="relative inline-flex items-center px-2 py-2 rounded-r-md text-cafe-claro ring-1 ring-cafe-oscuro hover:bg-cafe-oscuro hover:text-white">
+                class="relative inline-flex items-center px-2 py-2 rounded-r-md text-cafe-intermedio ring-1 ring-cafe-oscuro hover:bg-cafe-oscuro hover:text-white">
           Siguiente
         </button>
       </nav>

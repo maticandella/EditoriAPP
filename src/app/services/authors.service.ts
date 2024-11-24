@@ -19,22 +19,22 @@ import { AuthorResponse } from '../interfaces/response/AuthorResponse';
       return this.http.get<Response<AuthorResponse>>(`${this.baseUrl}/authors/${id}`);
     }
 
-    getAll(page: number = 1, limit: number = 10, order: string = 'ASC'): Observable<AuthorPaginatedResponse> {
+    getAll(page: number = 1, limit: number = 10): Observable<AuthorPaginatedResponse> {
       return this.http.get<AuthorPaginatedResponse>(`${this.baseUrl}/authors`, {
         params: {
           page: page.toString(),
-          limit: limit.toString(),
-          //order: order
+          limit: limit.toString()
         }
       });
     }
 
-    search(page: number = 1, limit: number = 10, name = ''): Observable<AuthorPaginatedResponse> {
+    search(page: number = 1, limit: number = 10, name = '', initial= ''): Observable<AuthorPaginatedResponse> {
       return this.http.get<AuthorPaginatedResponse>(`${this.baseUrl}/authors/search`, {
         params: {
           page: page.toString(),
           limit: limit.toString(),
-          name: name
+          name: name,
+          initial: initial
         }
       });
     }

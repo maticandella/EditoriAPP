@@ -1,7 +1,7 @@
 import { Genre } from './../../interfaces/Genre';
 import { CommonModule } from '@angular/common';
 import { Component, AfterViewInit, inject } from '@angular/core';
-import Swiper, { Navigation } from 'swiper';
+import Swiper, { Navigation, Pagination } from 'swiper';
 import { GenreService } from '../../services/genres.service';
 
 @Component({
@@ -20,6 +20,16 @@ export class HomeComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    new Swiper('.multiple-slide-hero-carousel', {
+      modules: [Pagination],
+      loop: true,
+      slidesPerView: 1,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+
     new Swiper('.multiple-slide-carousel', {
       modules: [Navigation],
       loop: true,

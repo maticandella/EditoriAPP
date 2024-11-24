@@ -13,5 +13,6 @@ export interface Book {
     review?: string;
     size?: number;
     price: number;
+    popularityScore: number;
     author?: Author;
 }

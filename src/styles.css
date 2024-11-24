@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 body {
-    @apply bg-crema text-white font-Jost tracking-wider;
+    @apply bg-gris-claro text-white font-Jost tracking-wider;
 }
 
 h1 {

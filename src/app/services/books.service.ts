@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Response } from '../interfaces/response/Response';
 import { BookResponse } from '../interfaces/response/BookResponse';
 import { BookByAuthorResponse } from '../interfaces/response/BookByAuthorResponse';
+import { BookPaginatedResponse } from '../interfaces/response/BookPaginatedResponse';
 
 @Injectable({
     providedIn: 'root'
@@ -20,5 +21,14 @@ import { BookByAuthorResponse } from '../interfaces/response/BookByAuthorRespons
 
     getByAuthorId(authorId: number): Observable<Response<BookByAuthorResponse>> {
       return this.http.get<Response<BookByAuthorResponse>>(`${this.baseUrl}/books/author/${authorId}`);
+    }
+
+    getAll(page: number = 1, limit: number = 10): Observable<BookPaginatedResponse> {
+      return this.http.get<BookPaginatedResponse>(`${this.baseUrl}/books`, {
+        params: {
+          page: page.toString(),
+          limit: limit.toString()
+        }
+      });
     }
 }

@@ -6,8 +6,9 @@
   
     <!--Buscador-->
   <div class="container mx-auto text-center flex w-96 rounded bg-white mt-0 mb-5 border border-cafe-claro">
-    <input type="search" placeholder="Buscar" class="w-full border-none bg-transparent px-2 py-1 text-cafe-oscuro outline-none focus:outline-none">
-    <button class="m-2 rounded px-4 py-1 text-cafe-oscuro hover:text-cafe-claro">
+    <input type="search" placeholder="Buscar" class="w-full border-none bg-transparent px-2 py-1 text-cafe-oscuro outline-none focus:outline-none"
+      [(ngModel)]="title" (keyup.enter)="search(1, 10, title)">
+    <button class="m-2 rounded px-4 py-1 text-cafe-oscuro hover:text-cafe-claro" (click)="search(1, 10, title)">
       <i class="ri-search-line"></i>
     </button>
   </div>
@@ -31,85 +32,13 @@
       </app-pagination>
     </div>
 
-    <!-- Filtro de letras -->
-    <div class="lg:col-span-1 md:col-span-4 hidden md:block rounded p-4">
+    <!-- Filtrar por Categorías -->
+    <div class="rounded p-4">
       <h4 class="font-bold font-Jost text-center mb-4">Filtrar por Categorías</h4>
-      <div class="grid grid-cols-5 md:grid-cols-3 xl:grid-cols-5 gap-2 text-center">
-        
-             <!-- Filter section, show/hide based on section state. -->
-             <div class="pt-6" id="filter-section-mobile-1">
-              <div class="space-y-6">
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-0" name="category[]" value="new-arrivals" type="checkbox" class="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 min-w-0 flex-1 text-gray-300">New Arrivals</label>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="flex items-center" *ngFor="let genre of genres">
+        <input [id]="'filter-mobile-category-' + genre.id" [name]="genre.description" [value]="genre.description" type="checkbox" class="size-4 rounded border-gray-300 accent-cafe-intermedio">
+        <label [for]="'filter-mobile-category-' + genre.id" class="ml-3">{{genre.description}}</label>
       </div>
     </div>
   </div>
-
-
-    <!-- <div class="flex flex-col md:flex-row mx-auto container max-w-6xl"> 
-        <div class="relative mr-auto flex size-full max-w-xs flex-col overflow-y-auto  py-4 pb-12 shadow-xl">
-            <div class="flex items-center justify-between px-4">
-              <h2 class="text-lg font-medium text-gray-400">Filtros</h2>
-              <button type="button" class="-mr-2 flex size-10 items-center justify-center rounded-md p-2 text-gray-400">
-                <span class="sr-only">Close menu</span>
-                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-  
-            
-            <form class="mt-4 border-t border-gray-200">
-              <div class="border-t border-gray-200 px-4 py-6">
-                <h3 class="-mx-2 -my-3 flow-root">
-                   Expand/collapse section button 
-                  <button type="button" class="flex w-full items-center justify-between px-2 py-3 text-gray-400 hover:text-gray-500" aria-controls="filter-section-mobile-1" aria-expanded="false">
-                    <span class="font-medium text-gray-300">Categorías</span>
-                    <span class="ml-6 flex items-center">
-                       Expand icon, show/hide based on section open state. 
-                      <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                        <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
-                      </svg>
-                       Collapse icon, show/hide based on section open state. 
-                      <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                        <path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" />
-                      </svg>
-                    </span>
-                  </button>
-                </h3>
-                 Filter section, show/hide based on section state. -->
-                <!-- <div class="pt-6" id="filter-section-mobile-1">
-                  <div class="space-y-6">
-                    <div class="flex items-center">
-                      <input id="filter-mobile-category-0" name="category[]" value="new-arrivals" type="checkbox" class="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                      <label for="filter-mobile-category-0" class="ml-3 min-w-0 flex-1 text-gray-300">New Arrivals</label>
-                    </div>
-                    <div class="flex items-center">
-                      <input id="filter-mobile-category-1" name="category[]" value="sale" type="checkbox" class="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                      <label for="filter-mobile-category-1" class="ml-3 min-w-0 flex-1 text-gray-300">Sale</label>
-                    </div>
-                    <div class="flex items-center">
-                      <input id="filter-mobile-category-2" name="category[]" value="travel" type="checkbox" checked class="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                      <label for="filter-mobile-category-2" class="ml-3 min-w-0 flex-1 text-gray-300">Travel</label>
-                    </div>
-                    <div class="flex items-center">
-                      <input id="filter-mobile-category-3" name="category[]" value="organization" type="checkbox" class="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                      <label for="filter-mobile-category-3" class="ml-3 min-w-0 flex-1 text-gray-300">Organization</label>
-                    </div>
-                    <div class="flex items-center">
-                      <input id="filter-mobile-category-4" name="category[]" value="accessories" type="checkbox" class="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                      <label for="filter-mobile-category-4" class="ml-3 min-w-0 flex-1 text-gray-300">Accessories</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-    </div> --> 
+</div>

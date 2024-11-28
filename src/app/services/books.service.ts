@@ -31,4 +31,15 @@ import { BookPaginatedResponse } from '../interfaces/response/BookPaginatedRespo
         }
       });
     }
+
+    search(page: number = 1, limit: number = 10, title = '', categories: number[ ]= []): Observable<BookPaginatedResponse> {
+      return this.http.get<BookPaginatedResponse>(`${this.baseUrl}/books/search`, {
+        params: {
+          page: page.toString(),
+          limit: limit.toString(),
+          title: title,
+          categories: categories
+        }
+      });
+    }
 }

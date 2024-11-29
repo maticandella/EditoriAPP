@@ -12,11 +12,14 @@ module.exports = {
       },
       extend: {
         colors: {
-            'gris-claro': '#f7fafb',          
-            'cafe-oscuro': '#392b1b',
-            'cafe-intermedio': '#8d6f5b',
-            'cafe-claro': '#c1b09d',
+            'gris-claro': '#ffffff',          
+            'cafe-oscuro': "#382110ff",
+            'cafe-intermedio': '#baac9a',
+            'cafe-claro': '#f4f1ea',
             'beige': '#ebebe4',
+            'oliva': '#616f54',
+            'verde': '#409970',
+            'amarillo': '#ffd767'
       }
     },
       fontFamily: {
@@ -31,5 +34,7 @@ module.exports = {
           }
       }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ]
 }

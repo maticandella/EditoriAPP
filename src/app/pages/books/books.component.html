@@ -1,4 +1,4 @@
-<div class="bg-crema text-cafe-oscuro py-20">
+<div class="bg-beige text-cafe-oscuro pt-20">
   
   <div class="container mx-auto text-center m-5">
     <h1 class="text-4xl font-bold text-cafe-oscuro font-Jost">Libros</h1>
@@ -8,7 +8,7 @@
   <div class="container mx-auto text-center flex w-96 rounded bg-white mt-0 mb-5 border border-cafe-claro">
     <input type="search" placeholder="Buscar" class="w-full border-none bg-transparent px-2 py-1 text-cafe-oscuro outline-none focus:outline-none"
       [(ngModel)]="title" (keyup.enter)="search(1, 10, title)">
-    <button class="m-2 rounded px-4 py-1 text-cafe-oscuro hover:text-cafe-claro" (click)="search(1, 10, title)">
+    <button class="m-2 rounded px-4 py-1 text-cafe-oscuro hover:text-oliva" (click)="search(1, 10, title)">
       <i class="ri-search-line"></i>
     </button>
   </div>
@@ -17,13 +17,42 @@
     <!-- Libros -->
     <div class="lg:col-span-5 md:col-span-4 sm:col-span-1">
       <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <div *ngFor="let book of books" class="relative w-full aspect-[2/3] overflow-hidden rounded-md shadow-lg cursor-pointer">
-        <a [href]="'book/' + book.id" class="block w-full h-full">
-          <img [src]="'../../../assets/img/books/' + book.photo" alt="Portada del libro" class="w-full h-full object-cover hover:opacity-80 transition duration-500">
-        </a>
+        <div *ngFor="let book of books" class="relative w-full aspect-[2/3]">
+          <a [href]="'book/' + book.id" class="block w-full h-full">
+            <img [src]="'../../../assets/img/books/' + book.photo" alt="Portada del libro" class="w-full h-full object-cover rounded-md shadow-lg cursor-pointer hover:opacity-80 transition duration-500">
+          </a>
+          
+          <div class="flex items-baseline space-x-2 mt-1 mb-1 group text-cafe-oscuro">
+            <i class="ri-book-fill text-xl"></i>
+            <a [href]="'book/' + book.id" class="flex-1">
+              <h2 title="{{book.title}}"
+                class="text-xl font-medium font-Jost leading-tight hover:text-cafe-intermedio line-clamp-2">
+                {{book.title}}
+              </h2>
+            </a>
+          </div> 
+          
+          <div class="flex items-baseline space-x-2 mt-1 mb-1 group text-oliva">
+            <i class="ri-quill-pen-fill text-sm"></i>
+            <a [href]="'author/' + book.author?.id" class="flex-1">
+              <h3 class="text-sm font-medium leading-tight hover:text-cafe-intermedio line-clamp-2 cursor-pointer">{{book.author?.name}} {{book.author?.lastName}}</h3>
+            </a>
+          </div>
+          
+
+          <div class="flex items-center">
+            <!-- <i class="ri-heart-line text-lg text-red-600"></i>
+            <i class="ri-heart-3-fill text-lg text-red-600"></i> -->
+            <p class="mr-2 text-lg font-semibold text-gray-900 ml-auto">${{book.price}}</p>
+          </div>
+          
+            <a href="#" class="flex items-center justify-center rounded-md mt-2 bg-verde text-white px-5 py-2.5 text-center text-sm font-medium hover:bg-oliva focus:outline-none focus:ring-4 focus:ring-oliva">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg> Añadir al carrito</a>
         </div>
       </div>
-  
+
       <!-- Paginación -->
       <app-pagination 
         [currentPage]="currentPage" 
@@ -36,8 +65,14 @@
     <div class="rounded p-4">
       <h4 class="font-bold font-Jost text-center mb-4">Filtrar por Categorías</h4>
       <div class="flex items-center" *ngFor="let genre of genres">
-        <input [id]="'filter-mobile-category-' + genre.id" [name]="genre.description" [value]="genre.description" type="checkbox" class="size-4 rounded border-gray-300 accent-cafe-intermedio">
-        <label [for]="'filter-mobile-category-' + genre.id" class="ml-3">{{genre.description}}</label>
+        <input 
+          [id]="'filter-mobile-category-' + genre.id"
+          [value]="genre.id" 
+          type="checkbox" 
+          (change)="toggleCategory(genre.id)"
+          class="size-4 rounded border-gray-300 accent-cafe-intermedio"
+        />
+        <label [for]="'filter-mobile-category-' + genre.id" class="ml-3 hover:text-oliva">{{genre.description}}</label>
       </div>
     </div>
   </div>

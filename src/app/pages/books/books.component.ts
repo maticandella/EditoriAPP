@@ -20,6 +20,7 @@ export class BooksComponent implements OnInit {
   books: Book[] = [];
   genres: Genre[] = [];
   title: string = '';
+  selectedCategories: number[] = []; // Guardo las categorías seleccionadas
   totalPages: number = 1;
   totalAuthors: number = 0;
   currentPage: number = 1;
@@ -60,6 +61,16 @@ export class BooksComponent implements OnInit {
       this.totalAuthors = response.data.totalItems;
       this.currentPage = page;
     });
+  }
+
+  toggleCategory(categoryId: number): void {
+    const index = this.selectedCategories.indexOf(categoryId);
+    if (index === -1) {
+      this.selectedCategories.push(categoryId);
+    } else {
+      this.selectedCategories.splice(index, 1);
+    }
+    this.search(this.currentPage, 10, '', this.selectedCategories); 
   }
 
   nextPage() {

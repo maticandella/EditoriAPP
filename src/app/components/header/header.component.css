@@ -3,9 +3,9 @@
 }
 
 .nav-link:hover {
-    @apply text-cafe-claro;
+    @apply text-oliva;
 }
 
 .title {
-    @apply font-Lobster text-beige sm:text-2xl lg:text-3xl;
+    @apply font-Lobster text-cafe-intermedio sm:text-2xl lg:text-3xl;
 }

@@ -3,6 +3,7 @@ import { AuthorsComponent } from './pages/authors/authors.component';
 import { AuthorDetailsComponent } from './pages/author-details/author-details.component';
 import { BooksComponent } from './pages/books/books.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LayoutComponent } from './components/admin/layout/layout.component';
 
 export const routes: Routes = [
     // { path: 'login', component: LoginComponent },
@@ -12,6 +13,9 @@ export const routes: Routes = [
     { path: 'author/:id', component: AuthorDetailsComponent },
     { path: 'books', component: BooksComponent },
     // { path: 'book/:id', component: AuthorDetailsComponent },
+    { path: 'admin', component: LayoutComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: '**', redirectTo: 'home' }
+    { path: '**', redirectTo: 'home' },
+
+    
 ];

@@ -23,10 +23,10 @@
           </a>
           
           <div class="flex items-baseline space-x-2 mt-1 mb-1 group text-cafe-oscuro">
-            <i class="ri-book-fill text-xl"></i>
+            <i class="ri-book-fill text-base"></i>
             <a [href]="'book/' + book.id" class="flex-1">
               <h2 title="{{book.title}}"
-                class="text-xl font-medium font-Jost leading-tight hover:text-cafe-intermedio line-clamp-2">
+                class="text-base font-medium font-Jost leading-tight hover:text-cafe-intermedio line-clamp-2 h-10">
                 {{book.title}}
               </h2>
             </a>
@@ -46,10 +46,45 @@
             <p class="mr-2 text-lg font-semibold text-gray-900 ml-auto">${{book.price}}</p>
           </div>
           
-            <a href="#" class="flex items-center justify-center rounded-md mt-2 bg-verde text-white px-5 py-2.5 text-center text-sm font-medium hover:bg-oliva focus:outline-none focus:ring-4 focus:ring-oliva">
+            <!-- <a href="#" class="flex items-center justify-center rounded-md mt-2 bg-verde text-white px-5 py-2.5 text-center text-sm font-medium hover:bg-oliva focus:outline-none focus:ring-4 focus:ring-oliva">
               <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg> Añadir al carrito</a>
+              </svg> Añadir al carrito</a> -->
+
+
+             <!-- Botones redondos -->
+            <div class="flex justify-center space-x-3 mt-1">
+              <!-- Botón para lista de deseos -->
+              <div class="relative group">
+                <button 
+                  class="rounded-full bg-red-500 text-white w-10 h-10 flex items-center justify-center hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">
+                  <i class="ri-heart-line text-lg"></i>
+                </button>
+                <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-red-500 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
+                  Añadir a Lista de Deseos
+                </div>
+              </div>
+              <!-- Botón para ver más -->
+              <div class="relative group">
+                <a [href]="'book/' + book.id"
+                  class="rounded-full bg-blue-500 text-white w-10 h-10 flex items-center justify-center hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                  <i class="ri-eye-line text-lg"></i>
+                </a>
+                <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-blue-500 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
+                  Ver más
+                </div>
+              </div>
+              <!-- Botón para añadir al carrito -->
+              <div class="relative group">
+                <button 
+                  class="rounded-full bg-verde text-white w-10 h-10 flex items-center justify-center hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                  <i class="ri-shopping-cart-line text-lg"></i>
+                </button>
+                <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-verde text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
+                  Añadir al carrito
+                </div>
+              </div>
+            </div>
         </div>
       </div>
 
@@ -62,7 +97,7 @@
     </div>
 
     <!-- Filtrar por Categorías -->
-    <div class="rounded p-4">
+    <div class="rounded p-4 hidden lg:block">
       <h4 class="font-bold font-Jost text-center mb-4">Filtrar por Categorías</h4>
       <div class="flex items-center" *ngFor="let genre of genres">
         <input 

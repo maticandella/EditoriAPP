@@ -4,6 +4,7 @@ import { AuthorDetailsComponent } from './pages/author-details/author-details.co
 import { BooksComponent } from './pages/books/books.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './components/admin/layout/layout.component';
+import { AuthorsListComponent } from './components/admin/authors/authors-list/authors-list.component';
 
 export const routes: Routes = [
     // { path: 'login', component: LoginComponent },
@@ -14,6 +15,7 @@ export const routes: Routes = [
     { path: 'books', component: BooksComponent },
     // { path: 'book/:id', component: AuthorDetailsComponent },
     { path: 'admin', component: LayoutComponent },
+    { path: 'admin/authors', component: AuthorsListComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', redirectTo: 'home' },
 

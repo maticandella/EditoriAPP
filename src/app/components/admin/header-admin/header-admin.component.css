@@ -1,0 +1,3 @@
+.title {
+    @apply font-Lobster text-cafe-intermedio sm:text-2xl lg:text-3xl;
+}

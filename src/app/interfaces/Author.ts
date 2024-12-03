@@ -9,6 +9,7 @@ export interface Author {
     isActive?: boolean;
     note?: string;
     photo?: string;
+    createdAt: Date;
     nationality?: Nationality;
     socialMediaAccounts?: SocialMedia[];
 }

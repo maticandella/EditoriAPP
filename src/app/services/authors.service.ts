@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { appsettings } from '../settings/appsettings';
 import { Observable } from 'rxjs';
@@ -37,5 +37,19 @@ import { AuthorResponse } from '../interfaces/response/AuthorResponse';
           initial: initial
         }
       });
+    }
+
+    create(name: string, lastName: string, nationalityId: number, note: string, photo: string): Observable<HttpResponse<number>> {
+      return this.http.post<number>(
+        `${this.baseUrl}/authors`,
+        {
+          name: name,
+          lastName: lastName,
+          nationalityId: nationalityId,
+          note: note,
+          photo: photo
+        },
+        { observe: 'response' }
+      );
     }
 }

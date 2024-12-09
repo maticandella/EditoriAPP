@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './header-admin.component.css'
 })
 export class HeaderAdminComponent {
+  menuOpen = false;
 
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 }

@@ -4,6 +4,7 @@ import { AuthorDetailsComponent } from './pages/author-details/author-details.co
 import { BooksComponent } from './pages/books/books.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthorsListComponent } from './components/admin/authors/authors-list/authors-list.component';
+import { AuthorsAddComponent } from './components/admin/authors/authors-add/authors-add.component';
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
@@ -13,6 +14,7 @@ export const routes: Routes = [
         component: AdminLayoutComponent,
         children: [
             { path: 'authors', component: AuthorsListComponent },
+            { path: 'authors/add', component: AuthorsAddComponent },
         ],
     },
     {

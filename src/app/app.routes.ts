@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { AuthorsComponent } from './pages/authors/authors.component';
 import { AuthorDetailsComponent } from './pages/author-details/author-details.component';
 import { BooksComponent } from './pages/books/books.component';
@@ -8,9 +9,12 @@ import { AuthorsAddComponent } from './components/admin/authors/authors-add/auth
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
+import { LoginComponent } from './pages/login/login.component';
+
 export const routes: Routes = [
     {
         path: 'admin', // Área administrativa
+        canActivate: [AuthGuard],
         component: AdminLayoutComponent,
         children: [
             { path: 'authors', component: AuthorsListComponent },
@@ -21,7 +25,7 @@ export const routes: Routes = [
         path: '', // Área pública
         component: PublicLayoutComponent,
         children: [
-            // { path: 'login', component: LoginComponent },
+            { path: 'login', component: LoginComponent },
             // { path: 'register', component: RegisterComponent },
             { path: 'home', component: HomeComponent },
             { path: 'authors', component: AuthorsComponent },

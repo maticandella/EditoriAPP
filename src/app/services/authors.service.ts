@@ -11,6 +11,7 @@ import { AuthorResponse } from '../interfaces/response/AuthorResponse';
     providedIn: 'root'
   })
   export class AuthorService {
+    private adminUrl:string = appsettings.adminUrl;
     private baseUrl:string = appsettings.apiUrl;
   
     constructor(private http: HttpClient) {}
@@ -41,15 +42,18 @@ import { AuthorResponse } from '../interfaces/response/AuthorResponse';
 
     create(name: string, lastName: string, nationalityId: number, note: string, photo: string): Observable<HttpResponse<number>> {
       return this.http.post<number>(
-        `${this.baseUrl}/authors`,
+        `${this.adminUrl}/authors`,
         {
           name: name,
           lastName: lastName,
-          nationalityId: nationalityId,
+          nacionalityId: nationalityId,
           note: note,
           photo: photo
         },
-        { observe: 'response' }
+        {
+          withCredentials: true,
+          observe: 'response'
+        }
       );
     }
 }

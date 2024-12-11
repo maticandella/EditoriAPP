@@ -8,9 +8,7 @@
             <div class="text-gray-600">
               <p class="font-medium text-lg">Datos personales</p>
               
-
-
-              <!-- FALTA AGREGAR LOGICA PARA OBTENER LA IMAGEN DE LA RUTA CORRESPONDIENTE, Y RECORTAR EL PATH PARA USAR SOLO EL NOMBRE Y LA EXTENSION DE LA FOTO -->
+              <!-- Foto del autor -->
               <div class="flex justify-center items-center h-40 mt-3">
                 <label for="dropzone-file" class="relative mx-auto cursor-pointer flex w-full h-40 max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-cafe-intermedio bg-gray-50 p-6 text-center">
                   <div class="flex flex-col justify-center items-center h-full">
@@ -19,32 +17,35 @@
                       <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
                   </div>
-                  <input id="dropzone-file" type="file" class="hidden" ngModel/>
+                  <input id="dropzone-file" type="file" class="hidden" (change)="onPhotoSelected($event)"/>
                 </label>
               </div>
-              
+              <!-- Nombre de la foto -->
+              <div *ngIf="photoName" class="mt-2 text-center text-sm text-gray-600">
+                Archivo seleccionado: {{ photoName }}
+              </div>
             </div>
   
             <div class="lg:col-span-2">
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                 <div class="md:col-span-5">
                   <label class="text-slate-700" for="name">Nombre</label>
-                  <input type="text" name="name" id="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" value="" required ngModel/>
+                  <input type="text" name="name" id="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" value=""/>
                 </div>
 
                 <div class="md:col-span-5">
                     <label class="text-slate-700" for="lastName">Apellido</label>
-                    <input type="text" name="lastName" id="lastName" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" value="" required ngModel/>
+                    <input type="text" name="lastName" id="lastName" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" value=""/>
                   </div>
   
                 <div class="md:col-span-5">
                   <label class="text-slate-700" for="note">Nota</label>
-                  <textarea name="note" id="note" class="h-20 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" ngModel></textarea>
+                  <textarea name="note" id="note" class="h-20 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro"></textarea>
                 </div>
 
                 <div class="md:col-span-5">
                   <label class="text-slate-700" for="nationalityId">Nacionalidad</label>
-                    <select class="h-10 w-full bg-gray-50 flex border border-gray-200 text-cafe-oscuro rounded items-center px-4 mt-1" id="nationalityId" name="nationalityId" ngModel required>
+                    <select class="h-10 w-full bg-gray-50 flex border border-gray-200 text-cafe-oscuro rounded items-center px-4 mt-1" id="nationalityId" name="nationalityId">
                       <option class="text-cafe-oscuro" value="">Seleccionar país</option>
                       <option *ngFor="let nationality of nationalities" [value]="nationality.id" class="text-cafe-oscuro">
                         {{ nationality.name }}

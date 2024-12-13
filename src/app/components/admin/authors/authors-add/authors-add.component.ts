@@ -2,13 +2,15 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthorService } from '../../../../services/authors.service';
 import { NationalityService } from './../../../../services/nationality.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Nationality } from '../../../../interfaces/Nationality';
+import { ModalComponent } from "../../../modal-add/modal-add.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authors-add',
   standalone: true,
-  imports: [ CommonModule, FormsModule ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ModalComponent],
   templateUrl: './authors-add.component.html',
   styleUrl: './authors-add.component.css'
 })
@@ -16,15 +18,24 @@ export class AuthorsAddComponent implements OnInit {
   newAuthorId = 0;
   nationalities: Nationality[] = [];
   photoName = '';
+  isModalOpen = false;
+
   private authorService = inject(AuthorService);
   private nationalityService = inject(NationalityService);
+  private router = inject(Router)
 
   ngOnInit(): void {
     this.getCountries();
   }
 
-  //FALTA VALIDAR FORM COMO HICE EN LOGIN
-  //FALTA RESPONDER CON UN MODAL CUANDO DAS DE ALTA AL AUTOR , OPCIONES: https://www.creative-tim.com/twcomponents/component/modal-13 O https://www.creative-tim.com/twcomponents/component/tailwind-css-modal-popup
+  form: FormGroup = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    nationalityId: new FormControl('', [Validators.required, Validators.min(1)])
+  });
+
+  //FALTA AGREGAR REDES
+  //MODIFICAR FORMULARIO, QUE QUEDE UNA COSA ABAJO DE OTRA
 
   onPhotoSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -36,12 +47,13 @@ export class AuthorsAddComponent implements OnInit {
 
   create(formValue: { name: string; lastName: string; nationalityId: number; note: string }): void {
     const { name, lastName, nationalityId, note } = formValue;
+    console.log(nationalityId)
     this.authorService.create(name, lastName, nationalityId, note, this.photoName || '')
       .subscribe(
         response => {
           if (response.status === 201) {
             this.newAuthorId = response.body || 0;
-            console.log(`Autor creado con éxito. ID: ${this.newAuthorId}`);
+            this.openModal()
           }
         },
         error => {
@@ -60,5 +72,22 @@ export class AuthorsAddComponent implements OnInit {
     this.nationalityService.getAll().subscribe(response => {
       this.nationalities = response.data.nationalities;
     });
+  }
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  handleConfirm() {
+    this.isModalOpen = false;
+    this.router.navigate(['admin/authors/add']);
+    this.form.reset();
+    console.log('Confirmed! Formulario vacío.');
+  }
+
+  handleCancel() {
+    this.isModalOpen = false;
+    this.router.navigate(['admin/authors']);
+    console.log('Cancelled!');
   }
 }

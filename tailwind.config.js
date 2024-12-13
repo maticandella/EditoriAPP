@@ -20,7 +20,17 @@ module.exports = {
             'oliva': '#616f54',
             'verde': '#409970',
             'amarillo': '#ffd767'
-      }
+      },
+      keyframes: {
+        spinAndScale: {
+          '0%': { transform: 'scale(0.5) rotate(0deg)', opacity: '0' },
+          '50%': { transform: 'scale(1.2) rotate(180deg)', opacity: '0.5' },
+          '100%': { transform: 'scale(1) rotate(360deg)', opacity: '1' },
+        },
+      },
+      animation: {
+        spinAndScale: 'spinAndScale 1s ease-in-out',
+      },
     },
       fontFamily: {
           Jost: ["Jost", "sans-serif"],

@@ -1,9 +1,16 @@
 <div class="min-h-screen bg-gray-100 flex items-center justify-center">
     <div class="container max-w-screen-lg mx-auto">
+      <app-modal *ngIf="isModalOpen"
+        [open]="isModalOpen"
+        [message]="'Autor agregado con éxito'"
+        [confirmText]="'Agregar nuevo autor'"
+        (confirmAction)="handleConfirm()"
+        (cancelAction)="handleCancel()">
+      </app-modal>
       <div>
         <h2 class="font-semibold text-xl text-cafe-oscuro mb-6">Agregar un nuevo Autor</h2>
   
-        <form (ngSubmit)="create(authorForm.value)" #authorForm="ngForm" class="bg-beige rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+        <form [formGroup]="form" (ngSubmit)="create(authorForm.value)" #authorForm="ngForm" class="bg-beige rounded shadow-lg p-4 px-4 md:p-8 mb-6">
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
             <div class="text-gray-600">
               <p class="font-medium text-lg">Datos personales</p>
@@ -17,7 +24,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
                   </div>
-                  <input id="dropzone-file" type="file" class="hidden" (change)="onPhotoSelected($event)"/>
+                  <input formControlName="photo" id="dropzone-file" type="file" class="hidden" (change)="onPhotoSelected($event)"/>
                 </label>
               </div>
               <!-- Nombre de la foto -->
@@ -30,13 +37,19 @@
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                 <div class="md:col-span-5">
                   <label class="text-slate-700" for="name">Nombre</label>
-                  <input type="text" name="name" id="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" value=""/>
+                  <input formControlName="name" type="text" name="name" id="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" value=""/>
+                  <p *ngIf="form.get('name')?.touched && form.get('name')?.hasError('required')" class="mt-1 text-sm text-red-500">
+                    El nombre es obligatorio.
+                  </p>
                 </div>
 
                 <div class="md:col-span-5">
-                    <label class="text-slate-700" for="lastName">Apellido</label>
-                    <input type="text" name="lastName" id="lastName" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" value=""/>
-                  </div>
+                  <label class="text-slate-700" for="lastName">Apellido</label>
+                  <input formControlName="lastName" type="text" name="lastName" id="lastName" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" value=""/>
+                  <p *ngIf="form.get('lastName')?.touched && form.get('lastName')?.hasError('required')" class="mt-1 text-sm text-red-500">
+                    El apellido es obligatorio.
+                  </p>
+                </div>
   
                 <div class="md:col-span-5">
                   <label class="text-slate-700" for="note">Nota</label>
@@ -45,17 +58,21 @@
 
                 <div class="md:col-span-5">
                   <label class="text-slate-700" for="nationalityId">Nacionalidad</label>
-                    <select class="h-10 w-full bg-gray-50 flex border border-gray-200 text-cafe-oscuro rounded items-center px-4 mt-1" id="nationalityId" name="nationalityId">
+                    <select formControlName="nationalityId" id="nationalityId" name="nationalityId" class="h-10 w-full bg-gray-50 flex border border-gray-200 text-cafe-oscuro rounded items-center px-4 mt-1">
                       <option class="text-cafe-oscuro" value="">Seleccionar país</option>
                       <option *ngFor="let nationality of nationalities" [value]="nationality.id" class="text-cafe-oscuro">
                         {{ nationality.name }}
                       </option>
                     </select>
+                    <div *ngIf="form.get('nationalityId')?.touched && form.get('nationalityId')?.invalid" class="mt-1 text-sm text-red-500">
+                      <span *ngIf="form.get('nationalityId')?.hasError('required')">Debe seleccionar un país.</span>
+                      <span *ngIf="form.get('nationalityId')?.hasError('min')">El país seleccionado no es válido.</span>
+                    </div>
                 </div>
 
                 <div class="md:col-span-5 text-right mt-5">
                   <div class="inline-flex items-end">
-                    <button class="bg-verde hover:bg-oliva text-white font-bold py-2 px-4 rounded" type="submit">Agregar autor</button>
+                    <button class="bg-verde hover:bg-oliva text-white font-bold py-2 px-4 rounded" type="submit" [disabled]="form.invalid">Agregar autor</button>
                   </div>
                 </div>
   

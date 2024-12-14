@@ -11,12 +11,12 @@
         <h2 class="font-semibold text-xl text-cafe-oscuro mb-6">Agregar un nuevo Autor</h2>
   
         <form [formGroup]="form" (ngSubmit)="create(authorForm.value)" #authorForm="ngForm" class="bg-beige rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-          <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-            <div class="text-gray-600">
-              <p class="font-medium text-lg">Datos personales</p>
+          <div class="grid gap-4 gap-y-2 text-sm">
+            <!-- <div class="text-gray-600">
+              <p class="font-medium text-lg">Datos personales</p> -->
               
               <!-- Foto del autor -->
-              <div class="flex justify-center items-center h-40 mt-3">
+              <!-- <div class="flex justify-center items-center h-40 mt-3">
                 <label for="dropzone-file" class="relative mx-auto cursor-pointer flex w-full h-40 max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-cafe-intermedio bg-gray-50 p-6 text-center">
                   <div class="flex flex-col justify-center items-center h-full">
                     <h3 class="text-sm text-gray-700 tracking-wide mb-2">Foto del Autor</h3>
@@ -26,12 +26,12 @@
                   </div>
                   <input formControlName="photo" id="dropzone-file" type="file" class="hidden" (change)="onPhotoSelected($event)"/>
                 </label>
-              </div>
+              </div> -->
               <!-- Nombre de la foto -->
-              <div *ngIf="photoName" class="mt-2 text-center text-sm text-gray-600">
+              <!-- <div *ngIf="photoName" class="mt-2 text-center text-sm text-gray-600">
                 Archivo seleccionado: {{ photoName }}
               </div>
-            </div>
+            </div> -->
   
             <div class="lg:col-span-2">
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
@@ -68,6 +68,13 @@
                       <span *ngIf="form.get('nationalityId')?.hasError('required')">Debe seleccionar un país.</span>
                       <span *ngIf="form.get('nationalityId')?.hasError('min')">El país seleccionado no es válido.</span>
                     </div>
+                </div>
+
+                <div class="md:col-span-5">
+                  <label class="text-slate-700" for="note">Foto</label>
+                  <input type="file" id="photo" name="photo" formControlName="photo"
+                  class="peer block w-full appearance-none rounded   bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                  (change)="onPhotoSelected($event)">
                 </div>
 
                 <div class="md:col-span-5 text-right mt-5">

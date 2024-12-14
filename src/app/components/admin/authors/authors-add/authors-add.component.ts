@@ -35,7 +35,6 @@ export class AuthorsAddComponent implements OnInit {
   });
 
   //FALTA AGREGAR REDES
-  //MODIFICAR FORMULARIO, QUE QUEDE UNA COSA ABAJO DE OTRA
 
   onPhotoSelected(event: Event): void {
     const input = event.target as HTMLInputElement;

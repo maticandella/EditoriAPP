@@ -12,27 +12,6 @@
   
         <form [formGroup]="form" (ngSubmit)="create(authorForm.value)" #authorForm="ngForm" class="bg-beige rounded shadow-lg p-4 px-4 md:p-8 mb-6">
           <div class="grid gap-4 gap-y-2 text-sm">
-            <!-- <div class="text-gray-600">
-              <p class="font-medium text-lg">Datos personales</p> -->
-              
-              <!-- Foto del autor -->
-              <!-- <div class="flex justify-center items-center h-40 mt-3">
-                <label for="dropzone-file" class="relative mx-auto cursor-pointer flex w-full h-40 max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-cafe-intermedio bg-gray-50 p-6 text-center">
-                  <div class="flex flex-col justify-center items-center h-full">
-                    <h3 class="text-sm text-gray-700 tracking-wide mb-2">Foto del Autor</h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-cafe-oscuro" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                    </svg>
-                  </div>
-                  <input formControlName="photo" id="dropzone-file" type="file" class="hidden" (change)="onPhotoSelected($event)"/>
-                </label>
-              </div> -->
-              <!-- Nombre de la foto -->
-              <!-- <div *ngIf="photoName" class="mt-2 text-center text-sm text-gray-600">
-                Archivo seleccionado: {{ photoName }}
-              </div>
-            </div> -->
-  
             <div class="lg:col-span-2">
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                 <div class="md:col-span-5">
@@ -71,7 +50,7 @@
                 </div>
 
                 <div class="md:col-span-5">
-                  <label class="text-slate-700" for="note">Foto</label>
+                  <label class="text-slate-700" for="photo">Foto</label>
                   <input type="file" id="photo" name="photo" formControlName="photo"
                   class="peer block w-full appearance-none rounded   bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                   (change)="onPhotoSelected($event)">
@@ -86,6 +65,24 @@
               </div>
             </div>
           </div>
+
+          <!-- Redes sociales opcionales -->
+          <!-- <button type="button" (click)="toggleSocialLinks()">Agregar redes sociales</button>
+          <div *ngIf="showSocialLinks">
+            <div formArrayName="socialLinks">
+              <div *ngFor="let social of socialMediaTypes; let i = index" [formGroupName]="i">
+                <label for="platform-{{ i }}">Plataforma</label>
+                <input id="platform-{{ i }}" formControlName="platform" placeholder="Ej. Twitter, Instagram">
+
+                <label for="url-{{ i }}">URL</label>
+                <input id="url-{{ i }}" formControlName="url" placeholder="Ej. https://twitter.com/usuario">
+
+                <button type="button" (click)="removeSocialLink(i)">Eliminar</button>
+              </div>
+            </div>
+            <button type="button" (click)="addSocialLink()">Añadir red social</button>
+          </div> -->
+
         </form>
         <div class="md:col-span-5 text-right mt-5">
           <div class="inline-flex items-end">

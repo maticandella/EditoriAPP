@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule, FormGroup, Validators, FormControl } 
 import { Nationality } from '../../../../interfaces/Nationality';
 import { ModalComponent } from "../../../modal-add/modal-add.component";
 import { Router } from '@angular/router';
+import { SocialMediaService } from '../../../../services/socialMedia.service';
+import { SocialMediaType } from '../../../../interfaces/SocialMediaType';
 
 @Component({
   selector: 'app-authors-add',
@@ -17,24 +19,26 @@ import { Router } from '@angular/router';
 export class AuthorsAddComponent implements OnInit {
   newAuthorId = 0;
   nationalities: Nationality[] = [];
+  socialMediaTypes: SocialMediaType[] = [];
   photoName = '';
   isModalOpen = false;
 
   private authorService = inject(AuthorService);
   private nationalityService = inject(NationalityService);
+  private socialMediaService = inject(SocialMediaService);
   private router = inject(Router)
 
   ngOnInit(): void {
     this.getCountries();
+    this.getSocialMediaTypes();
   }
 
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-    nationalityId: new FormControl('', [Validators.required, Validators.min(1)])
+    nationalityId: new FormControl('', [Validators.required, Validators.min(1)]),
+    photo: new FormControl(''),
   });
-
-  //FALTA AGREGAR REDES
 
   onPhotoSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -70,6 +74,13 @@ export class AuthorsAddComponent implements OnInit {
   getCountries() {
     this.nationalityService.getAll().subscribe(response => {
       this.nationalities = response.data.nationalities;
+    });
+  }
+
+  //INCORPORAR LAS REDES EN EL HTML, YA LAS TRAE BIEN
+  getSocialMediaTypes() {
+    this.socialMediaService.getAll().subscribe(response => {
+      this.socialMediaTypes = response.data.socialMediaTypes;
     });
   }
 

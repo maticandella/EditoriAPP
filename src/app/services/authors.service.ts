@@ -6,6 +6,7 @@ import { Response } from '../interfaces/response/Response';
 import { AuthorPaginatedResponse } from '../interfaces/response/AuthorPaginatedResponse';
 import { AuthorResponse } from '../interfaces/response/AuthorResponse';
 import { SocialMedia } from '../interfaces/SocialMedia';
+import { ErrorResponse } from '../interfaces/response/ErrorResponse';
 
 
 @Injectable({
@@ -51,6 +52,16 @@ import { SocialMedia } from '../interfaces/SocialMedia';
           note: note,
           photo: photo
         },
+        {
+          withCredentials: true,
+          observe: 'response'
+        }
+      );
+    }
+
+    delete(id: number): Observable<HttpResponse<ErrorResponse>> {
+      return this.http.delete<ErrorResponse>(
+        `${this.adminUrl}/authors/${id}`,
         {
           withCredentials: true,
           observe: 'response'

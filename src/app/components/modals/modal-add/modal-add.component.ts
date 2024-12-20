@@ -6,8 +6,7 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule],
   selector: 'app-modal',
   standalone: true,
-  templateUrl: './modal-add.component.html',
-  styleUrl: './modal-add.component.css'
+  templateUrl: './modal-add.component.html'
 })
 export class ModalComponent {
   @Input() open = false; 

@@ -4,7 +4,7 @@ import { AuthorService } from '../../../../services/authors.service';
 import { NationalityService } from './../../../../services/nationality.service';
 import { FormsModule, ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Nationality } from '../../../../interfaces/Nationality';
-import { ModalComponent } from "../../../modal-add/modal-add.component";
+import { ModalComponent } from "../../../modals/modal-add/modal-add.component";
 import { Router } from '@angular/router';
 import { SocialMediaService } from '../../../../services/socialMedia.service';
 import { SocialMediaType } from '../../../../interfaces/SocialMediaType';

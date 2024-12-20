@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { appsettings } from '../settings/appsettings';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Response } from '../interfaces/response/Response';
 import { AuthorPaginatedResponse } from '../interfaces/response/AuthorPaginatedResponse';
 import { AuthorResponse } from '../interfaces/response/AuthorResponse';
+import { SocialMedia } from '../interfaces/SocialMedia';
 
 
 @Injectable({
@@ -40,8 +41,8 @@ import { AuthorResponse } from '../interfaces/response/AuthorResponse';
       });
     }
 
-    create(name: string, lastName: string, nationalityId: number, note: string, photo: string): Observable<HttpResponse<number>> {
-      return this.http.post<number>(
+    create(name: string, lastName: string, nationalityId: number, note: string, photo: string): Observable<HttpResponse<{ data: { id: number } }>> {
+      return this.http.post<{ data: { id: number } }>(
         `${this.adminUrl}/authors`,
         {
           name: name,
@@ -54,6 +55,19 @@ import { AuthorResponse } from '../interfaces/response/AuthorResponse';
           withCredentials: true,
           observe: 'response'
         }
+      );
+    }
+
+    addSocialMedia(id: number, socialMedia: SocialMedia[]): Observable<Response<number>> {
+      return this.http.post<Response<number>>(
+        `${this.adminUrl}/authors/${id}/socialmedia`,
+        socialMedia,
+        {
+          withCredentials: true,
+          observe: 'response'
+        }
+      ).pipe(
+        map(response => response.body as Response<number>) 
       );
     }
 }

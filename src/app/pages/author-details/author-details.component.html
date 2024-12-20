@@ -20,7 +20,7 @@
         <div class="flex space-x-4 justify-end pt-4">
           <a *ngFor="let social of author.socialMediaAccounts" 
              [href]="social?.url" target="_blank" class="text-3xl text-cafe-intermedio transition-transform transform hover:text-cafe-claro hover:scale-150">
-            <i [ngClass]="'ri-' + social.socialMediaType.icon + '-fill'"></i>
+            <i [ngClass]="'ri-' + social.socialMediaType?.icon + '-fill'"></i>
           </a>
         </div>
       </div>

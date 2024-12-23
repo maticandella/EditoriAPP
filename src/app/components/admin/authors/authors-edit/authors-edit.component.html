@@ -2,15 +2,17 @@
     <div class="container max-w-screen-lg mx-auto">
       <app-modal *ngIf="isModalOpen"
         [open]="isModalOpen"
-        [message]="'Autor agregado con éxito'"
-        [confirmText]="'Agregar nuevo autor'"
+        [message]="'Autor editado con éxito'"
+        [confirmText]="'Continuar editando'"
         (confirmAction)="handleConfirm()"
         (cancelAction)="handleCancel()">
       </app-modal>
       <div>
-        <h2 class="font-semibold text-xl text-cafe-oscuro my-6">Agregar un nuevo Autor</h2>
+        <h2 class="font-semibold text-xl text-cafe-oscuro my-6">Editar Autor</h2>
   
-        <app-form-authors (formSubmit)="create($event)"></app-form-authors>
+        <app-form-authors 
+          [author]="author" 
+          (formSubmit)="update($event)"></app-form-authors>
         
       </div>
     </div>

@@ -6,10 +6,11 @@ import { BooksComponent } from './pages/books/books.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthorsListComponent } from './components/admin/authors/authors-list/authors-list.component';
 import { AuthorsAddComponent } from './components/admin/authors/authors-add/authors-add.component';
+import { AuthorsEditComponent } from './components/admin/authors/authors-edit/authors-edit.component';
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-
 import { LoginComponent } from './pages/login/login.component';
+
 
 export const routes: Routes = [
     {
@@ -19,6 +20,7 @@ export const routes: Routes = [
         children: [
             { path: 'authors', component: AuthorsListComponent },
             { path: 'authors/add', component: AuthorsAddComponent },
+            { path: 'authors/edit/:id', component: AuthorsEditComponent },
         ],
     },
     {

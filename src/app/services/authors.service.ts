@@ -59,6 +59,23 @@ import { ErrorResponse } from '../interfaces/response/ErrorResponse';
       );
     }
 
+    update(id:number, name: string, lastName: string, nationalityId: number, note: string, photo: string): Observable<HttpResponse<ErrorResponse>> {
+      return this.http.put<ErrorResponse>(
+        `${this.adminUrl}/authors/${id}`,
+        {
+          name: name,
+          lastName: lastName,
+          nacionalityId: nationalityId,
+          note: note,
+          photo: photo
+        },
+        {
+          withCredentials: true,
+          observe: 'response'
+        }
+      );
+    }
+
     delete(id: number): Observable<HttpResponse<ErrorResponse>> {
       return this.http.delete<ErrorResponse>(
         `${this.adminUrl}/authors/${id}`,

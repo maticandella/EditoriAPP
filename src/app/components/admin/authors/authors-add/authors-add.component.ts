@@ -11,8 +11,7 @@ import { FormAuthorsComponent } from "../../../form/form-authors/form-authors.co
   selector: 'app-authors-add',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ModalComponent, FormAuthorsComponent],
-  templateUrl: './authors-add.component.html',
-  styleUrl: './authors-add.component.css'
+  templateUrl: './authors-add.component.html'
 })
 export class AuthorsAddComponent { 
   newAuthorId = 0;

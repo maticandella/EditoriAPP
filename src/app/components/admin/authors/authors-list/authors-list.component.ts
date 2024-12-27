@@ -3,16 +3,15 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule  } from '@angular/router';
 import { AuthorService } from '../../../../services/authors.service';
 import { ModalDeleteComponent } from "../../../modals/modal-delete/modal-delete.component";
 
 @Component({
   selector: 'app-authors-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, ModalDeleteComponent],
-  templateUrl: './authors-list.component.html',
-  styleUrl: './authors-list.component.css'
+  imports: [CommonModule, FormsModule, HttpClientModule, ModalDeleteComponent, RouterModule ],
+  templateUrl: './authors-list.component.html'
 })
 export class AuthorsListComponent implements OnInit {
   authors: Author[] = [];

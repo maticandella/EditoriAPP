@@ -1,0 +1,100 @@
+<form [formGroup]="form" (ngSubmit)="OnSubmit()" #authorForm="ngForm" class="bg-beige rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+    <div class="grid gap-4 gap-y-2 text-sm">
+      <div class="lg:col-span-2">
+        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+          <div class="md:col-span-5">
+            <label class="text-slate-700" for="title">Título</label>
+            <input formControlName="title" type="title" name="title" id="title" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" value=""/>
+            <p *ngIf="form.get('title')?.touched && form.get('title')?.hasError('required')" class="mt-1 text-sm text-red-500">
+              El título es obligatorio.
+            </p>
+          </div>
+
+          <div class="md:col-span-5">
+            <label class="text-slate-700" for="authorId">Autor</label>
+            <input formControlName="authorId" type="text" name="authorId" id="authorId" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" value=""/>
+            <p *ngIf="form.get('authorId')?.touched && form.get('authorId')?.hasError('required')" class="mt-1 text-sm text-red-500">
+              El autor es obligatorio.
+            </p>
+          </div>
+
+          <div class="md:col-span-5">
+            <label class="text-slate-700" for="genreId">Género</label>
+              <select formControlName="genreId" id="genreId" name="genreId" class="h-10 w-full bg-gray-50 flex border border-gray-200 text-cafe-oscuro rounded items-center px-4 mt-1">
+                <option class="text-cafe-oscuro" value="">Seleccionar género</option>
+                <option *ngFor="let genre of genres" [value]="genre.id" class="text-cafe-oscuro">
+                  {{ genre.description }}
+                </option>
+              </select>
+              <div *ngIf="form.get('genreId')?.touched && form.get('genreId')?.invalid" class="mt-1 text-sm text-red-500">
+                <span *ngIf="form.get('genreId')?.hasError('required')">Debe seleccionar un género.</span>
+                <span *ngIf="form.get('genreId')?.hasError('min')">El género seleccionado no es válido.</span>
+              </div>
+          </div>
+
+          <div class="md:col-span-5">
+            <label class="text-slate-700" for="editionId">Edición</label>
+              <select formControlName="editionId" id="editionId" name="editionId" class="h-10 w-full bg-gray-50 flex border border-gray-200 text-cafe-oscuro rounded items-center px-4 mt-1">
+                <option class="text-cafe-oscuro" value="">Seleccionar edición</option>
+                <option *ngFor="let edition of editions" [value]="edition.id" class="text-cafe-oscuro">
+                  {{ edition.description }}
+                </option>
+              </select>
+              <div *ngIf="form.get('editionId')?.touched && form.get('editionId')?.invalid" class="mt-1 text-sm text-red-500">
+                <span *ngIf="form.get('editionId')?.hasError('required')">Debe seleccionar un género.</span>
+                <span *ngIf="form.get('editionId')?.hasError('min')">El género seleccionado no es válido.</span>
+              </div>
+          </div>
+
+          <div class="md:col-span-5">
+            <label class="text-slate-700" for="note">Sinopsis</label>
+            <textarea formControlName="note" name="note" id="note" class="h-20 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro"></textarea>
+          </div>
+
+          <!-- <div class="md:col-span-5">
+            <label class="text-slate-700" for="nationalityId">Nacionalidad</label>
+              <select formControlName="nationalityId" id="nationalityId" name="nationalityId" class="h-10 w-full bg-gray-50 flex border border-gray-200 text-cafe-oscuro rounded items-center px-4 mt-1">
+                <option class="text-cafe-oscuro" value="">Seleccionar país</option>
+                <option *ngFor="let nationality of nationalities" [value]="nationality.id" class="text-cafe-oscuro">
+                  {{ nationality.name }}
+                </option>
+              </select>
+              <div *ngIf="form.get('nationalityId')?.touched && form.get('nationalityId')?.invalid" class="mt-1 text-sm text-red-500">
+                <span *ngIf="form.get('nationalityId')?.hasError('required')">Debe seleccionar un país.</span>
+                <span *ngIf="form.get('nationalityId')?.hasError('min')">El país seleccionado no es válido.</span>
+              </div>
+          </div>
+
+          <div class="md:col-span-5">
+            <label class="text-slate-700" for="photo">Foto</label>
+            <input type="file" id="photo" name="photo" formControlName="photo"
+            class="peer block w-full appearance-none rounded   bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+            (change)="onPhotoSelected($event)">
+            <div *ngIf="photoName && !form.get('photo')?.value">
+              <p class="text-slate-700 font-bold">Foto seleccionada: {{ photoName }}</p>
+            </div>
+          </div> -->
+
+          <div class="md:col-span-5 text-right mt-5">
+            <div class="inline-flex items-end">
+              <button class="bg-verde hover:bg-oliva text-white font-bold py-2 px-4 rounded" type="submit" [disabled]="form.invalid">{{ author ? 'Modificar autor' : 'Agregar autor' }}</button>
+            </div>
+            <div *ngIf="generalErrors.length > 0" class="mt-4 text-red-500">
+              <ul>
+                <li *ngFor="let error of generalErrors">{{ error }}</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</form>
+
+<div class="md:col-span-5 text-right my-5">
+  <div class="inline-flex items-end">
+    <a href="admin/authors">
+      <i class="ri-arrow-left-circle-fill text-blue-500 hover:text-blue-800 font-medium text-5xl"></i>
+    </a>
+  </div>
+</div>

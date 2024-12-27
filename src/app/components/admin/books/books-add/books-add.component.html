@@ -1,0 +1,17 @@
+<div class="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div class="container max-w-screen-lg mx-auto">
+      <app-modal *ngIf="isModalOpen"
+        [open]="isModalOpen"
+        [message]="'Libro agregado con éxito'"
+        [confirmText]="'Agregar nuevo libro'"
+        (confirmAction)="handleConfirm()"
+        (cancelAction)="handleCancel()">
+      </app-modal>
+      <div>
+        <h2 class="font-semibold text-xl text-cafe-oscuro my-6">Agregar un nuevo Libro</h2>
+  
+        <app-form-books (formSubmit)="create($event)"></app-form-books>
+        
+      </div>
+    </div>
+  </div>

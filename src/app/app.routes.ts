@@ -10,6 +10,7 @@ import { AuthorsEditComponent } from './components/admin/authors/authors-edit/au
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './pages/login/login.component';
+import { BooksAddComponent } from './components/admin/books/books-add/books-add.component';
 
 
 export const routes: Routes = [
@@ -21,6 +22,7 @@ export const routes: Routes = [
             { path: 'authors', component: AuthorsListComponent },
             { path: 'authors/add', component: AuthorsAddComponent },
             { path: 'authors/edit/:id', component: AuthorsEditComponent },
+            { path: 'books/add', component: BooksAddComponent },
         ],
     },
     {

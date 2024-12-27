@@ -106,12 +106,14 @@
                            </div>
                         </div>
                      </a>
-                     <div class="relative group">
-                        <i class="ri-book-2-fill text-green-900/70 pr-2 hover:text-green-600 cursor-pointer"></i> <!--Agregar Libros del autor-->
-                        <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-green-600 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
-                           Agregar libros
+                     <a [routerLink]="['/admin/books/add']" [queryParams]="author.id ? { authorId: author.id } : null">
+                        <div class="relative group">
+                           <i class="ri-book-2-fill text-green-900/70 pr-2 hover:text-green-600 cursor-pointer"></i> <!--Agregar Libros del autor-->
+                           <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-green-600 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
+                              Agregar libros
+                           </div>
                         </div>
-                     </div>
+                     </a>
                      <div class="relative group">
                         <i class="ri-account-pin-box-fill text-orange-400/70 pr-2 hover:text-orange-400 cursor-pointer"></i> <!--Agregar redes sociales del autor-->
                         <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-orange-400 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">

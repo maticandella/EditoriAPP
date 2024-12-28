@@ -14,7 +14,7 @@ import { Edition } from '../../../interfaces/Edition';
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './form-books.component.html'
 })
-export class FormBooksComponent implements OnInit {
+export class FormBooksComponent implements OnInit, OnChanges {
   @Input() author: Author | null = null;
   @Input() book: Book | null = null;
   @Output() formSubmit = new EventEmitter<any>();
@@ -29,37 +29,48 @@ export class FormBooksComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
       title: new FormControl('', [Validators.required]),
+      authorName: new FormControl(''),
       authorId: new FormControl('', [Validators.required, Validators.min(1)]),
-      genreId: new FormControl('', [Validators.required, Validators.min(1)]),
-      editionId: new FormControl('', [Validators.required, Validators.min(1)]),
+      genreId: new FormControl('', [Validators.required]),
+      editionId: new FormControl('', [Validators.required]),
       photo: new FormControl(null),
-      isbn: new FormControl('', [Validators.required, Validators.min(1), Validators.pattern(/^(?:\d{9}[\dxX]|\d{13})$/)]),
+      isbn: new FormControl('', [Validators.required, Validators.pattern(/^(?:\d{9}[\dxX]|\d{13})$/)]),
       pagesNumber: new FormControl('', [Validators.required, Validators.min(1)]),
-      year: new FormControl(null),
+      year: new FormControl(null,  [Validators.min(1), Validators.max(new Date().getFullYear())]),
       review: new FormControl(null),
-      price: new FormControl('', [Validators.required, Validators.min(1)])
+      price: new FormControl('', [Validators.required, Validators.min(0.01)])
     });
 
     ngOnInit(): void {
       this.getEditions();
       this.getGenres();
-    }  
+    }
 
-    //PARA EL PUT
-    // ngOnChanges(changes: SimpleChanges): void {
-    //   if (changes['book'] && this.book && this.author) {
-    //     this.form.setValue({
-    //       title: this.book?.title || '',
-    //       lastName: this.author.lastName || '',
-    //       note: this.author.note || '',
-    //       nationalityId: this.author.nacionalityId || '',
-    //       photo: '',
-    //       socialLinks: '',
-    //     });
-    //     this.photoName = this.author?.photo || '';
-    //     console.log(this.photoName)
-    //   }
-    // }
+    ngOnChanges(changes: SimpleChanges): void {
+      if (changes['author'] && this.author) {
+        this.form.patchValue({
+          authorName: this.author.name + ' ' + this.author.lastName || '',
+          authorId: this.author.id,
+        });
+        this.form.get('authorId')?.disable();
+      }
+
+      // if (changes['book'] && this.book) {
+      //   this.form.patchValue({
+      //     title: this.book.title || '',
+      //     authorId: this.book.authorId || '',
+      //     genreId: this.book.genreId || '',
+      //     editionId: this.book.editionId || '',
+      //     photo: '',
+      //     isbn: this.book.isbn || '',
+      //     pagesNumber: this.book.pagesNumber || '',
+      //     year: this.book.year || '',
+      //     review: this.book.review || '',
+      //     price: this.book.price || '',
+      //   });
+      //   this.photoName = this.book?.photo || '';
+      // }
+    }
 
   //#region Metodos para el OnInit
   /* 

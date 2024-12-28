@@ -54,7 +54,6 @@ export class AuthorsAddComponent {
    */
   private handleCreateError(error: any): void {
     this.formAuthorsComponent.generalErrors = [];
-    console.log(error.message)
     if (error.status === 400 && error.error?.errors) {
       const errorMessages = error.error.errors;
 

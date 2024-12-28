@@ -10,7 +10,7 @@
       <div>
         <h2 class="font-semibold text-xl text-cafe-oscuro my-6">Agregar un nuevo Libro</h2>
   
-        <app-form-books (formSubmit)="create($event)"></app-form-books>
+        <app-form-books [author]="author" (formSubmit)="create($event)"></app-form-books>
         
       </div>
     </div>

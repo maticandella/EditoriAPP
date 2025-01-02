@@ -11,6 +11,7 @@ import { PublicLayoutComponent } from './layouts/public-layout/public-layout.com
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BooksAddComponent } from './components/admin/books/books-add/books-add.component';
+import { AuthorsSocialMediaComponent } from './components/admin/authors/authors-social-media/authors-social-media.component';
 
 
 export const routes: Routes = [
@@ -22,6 +23,7 @@ export const routes: Routes = [
             { path: 'authors', component: AuthorsListComponent },
             { path: 'authors/add', component: AuthorsAddComponent },
             { path: 'authors/edit/:id', component: AuthorsEditComponent },
+            { path: 'authors/socialmedia/:id', component: AuthorsSocialMediaComponent },
             { path: 'books/add', component: BooksAddComponent },
         ],
     },

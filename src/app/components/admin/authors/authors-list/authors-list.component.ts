@@ -6,15 +6,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule  } from '@angular/router';
 import { AuthorService } from '../../../../services/authors.service';
 import { ModalDeleteComponent } from "../../../modals/modal-delete/modal-delete.component";
+import { ModalViewBooksComponent } from "../../../modals/modal-view-books/modal-view-books.component";
+import { BookService } from '../../../../services/books.service';
+import { Book } from '../../../../interfaces/Book';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-authors-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, ModalDeleteComponent, RouterModule ],
+  imports: [CommonModule, FormsModule, HttpClientModule, ModalDeleteComponent, RouterModule, ModalViewBooksComponent],
   templateUrl: './authors-list.component.html'
 })
 export class AuthorsListComponent implements OnInit {
   authors: Author[] = [];
+  books: Book[] = [];
   paginatedAuthors: Author[] = [];
   totalPages: number = 1; 
   totalAuthors: number = 0;
@@ -30,9 +35,14 @@ export class AuthorsListComponent implements OnInit {
   authorName: string = '';
   authorId: number = 0;
   message: string = '';
-//#endregion
+  //#endregion
+
+  //#region Params Modal View Books
+  isModalViewBooksOpen = false;
+  //#endregion
 
   private authorService = inject(AuthorService);
+  // private bookService = inject(BookService);
   private router = inject(Router);
 
   ngOnInit(): void {
@@ -48,6 +58,13 @@ export class AuthorsListComponent implements OnInit {
       this.updatePaginatedAuthors();
     });
   }
+
+  // getBooksByAuthorId(currentId: number): Promise<Book[]> {
+  //   return this.bookService.getByAuthorId(currentId).pipe(
+  //     map(response => response?.data?.books ?? []),
+  //     catchError(e => { return of([]); })
+  //   ).toPromise() as Promise<Book[]>;
+  // }
 
   search(page: number, limit: number, name: string, letter: string = ''): void {
     this.authorService.search(page, limit, name, letter).subscribe(response => {
@@ -128,5 +145,17 @@ export class AuthorsListComponent implements OnInit {
   handleCancel() {
     this.isModalOpen = false;
   }
+  //#endregion
+
+  //#region Manejo del Modal View Books
+  // async openModalViewBooks(currentId: number) {
+  //   try {
+  //     this.books = await this.getBooksByAuthorId(currentId);
+  //     this.isModalViewBooksOpen = true;
+  //     console.log("librossss", this.books)
+  //   } catch (error) {
+  //     console.error("Error al cargar los libros del autor:", error);
+  //   }
+  // }
   //#endregion
 }

@@ -9,6 +9,10 @@
          (confirmAction)="handleConfirm()"
          (cancelAction)="handleCancel()">
       </app-modal-delete>
+      <app-modal-view-books *ngIf="isModalViewBooksOpen"
+        [open]="isModalViewBooksOpen"
+        [books]="books">
+      </app-modal-view-books>
    <div class="relative flex flex-col w-full h-full text-slate-700 bg-white shadow-md rounded-xl bg-clip-border">
          <div class="relative mx-4 mt-4 overflow-hidden text-slate-700 bg-white rounded-none bg-clip-border">
             <div class="flex items-center justify-between ">
@@ -114,12 +118,19 @@
                            </div>
                         </div>
                      </a>
-                     <div class="relative group">
-                        <i class="ri-account-pin-box-fill text-orange-400/70 pr-2 hover:text-orange-400 cursor-pointer"></i> <!--Agregar redes sociales del autor-->
-                        <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-orange-400 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
-                           Agregar redes sociales
+                     <!-- <div class="relative group">
+                        <i (click)="openModalViewBooks(author.id)" class="ri-eye-fill text-slate-500/70 pr-2 hover:text-slate-800 cursor-pointer"></i> Agregar Libros del autor
+                        <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-slate-500 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity"> -->
+                        <!--Ver libros del autor </div> -->
+                     <!-- </div> -->
+                      <a href="admin/authors/socialmedia/{{author.id}}">
+                        <div class="relative group">
+                           <i class="ri-account-pin-box-fill text-orange-400/70 pr-2 hover:text-orange-400 cursor-pointer"></i> <!--Agregar redes sociales del autor-->
+                           <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-orange-400 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
+                              Agregar redes sociales
+                           </div>
                         </div>
-                     </div>
+                     </a>
                      <div class="relative group">
                         <i (click)="openModalDeleteWithParameters(author.id, author.name + ' ' + author.lastName)" class="ri-delete-bin-fill text-red-600/70 hover:text-red-600 cursor-pointer"></i> <!--Borrar-->
                         <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-red-600 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">

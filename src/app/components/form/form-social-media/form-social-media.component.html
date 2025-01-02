@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="OnSubmit()" #authorForm="ngForm" class="bg-beige rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+    <div class="grid gap-4 gap-y-2 text-sm">
+      <div class="lg:col-span-2">
+        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+          
+          <div class="md:col-span-5">
+              <div *ngFor="let social of socialMediaTypes; let i = index">
+                <div class="flex items-center gap-2 mt-1" (click)="toggleInputSocial(i)">
+                  <i [ngClass]="'ri-' + social.icon + '-fill text-slate-700'"></i>
+                  <label class="text-slate-700" for="{{social.name}}">{{social.name}}</label>
+                </div>
+                <div *ngIf="visibleInputs[i]" class="flex items-center gap-2">
+                  <input 
+                    type="text" 
+                    name="{{ social.name }}" 
+                    id="{{ social.name }}" 
+                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" 
+                    placeholder="Ingrese URL para {{ social.name }}"
+                    [value]="getSocialLinkUrl(social.id)"
+                    (input)="onSocialLinkChange(getInputValue($event), social.id)"
+                  />
+                  <i (click)="removeSocialLink(i)" class="ri-close-fill text-xl text-red-500 cursor-pointer"></i>
+                </div>
+              </div>
+          </div>
+
+          <div class="md:col-span-5 text-right mt-5">
+            <div class="inline-flex items-end">
+              <button class="bg-verde hover:bg-oliva text-white font-bold py-2 px-4 rounded" type="submit" [disabled]="form.invalid">Guardar</button>
+            </div>
+            <div *ngIf="generalErrors.length > 0" class="mt-4 text-red-500">
+              <ul>
+                <li *ngFor="let error of generalErrors">{{ error }}</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</form>
+
+<div class="md:col-span-5 text-right my-5">
+  <div class="inline-flex items-end">
+    <a href="admin/authors">
+      <i class="ri-arrow-left-circle-fill text-blue-500 hover:text-blue-800 font-medium text-5xl"></i>
+    </a>
+  </div>
+</div>

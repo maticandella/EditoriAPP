@@ -1,0 +1,145 @@
+<div class="pt-6 px-4">
+    <div class="max-w-full mx-auto">
+       <!-- <app-modal-delete *ngIf="isModalOpen"
+          [open]="isModalOpen"
+          [message]="message"
+          [showDeleteButton]="showDeleteButton"
+          [isOperationSuccessful]="isOperationSuccessful"
+          [confirmText]="'Eliminar'"
+          (confirmAction)="handleConfirm()"
+          (cancelAction)="handleCancel()"> -->
+       <!-- </app-modal-delete> -->
+    <div class="relative flex flex-col w-full h-full text-slate-700 bg-white shadow-md rounded-xl bg-clip-border">
+          <div class="relative mx-4 mt-4 overflow-hidden text-slate-700 bg-white rounded-none bg-clip-border">
+             <div class="flex items-center justify-between ">
+                <div>
+                   <!--Buscador-->
+                   <!-- <div class="mx-auto text-center flex w-96 rounded bg-white border border-cafe-claro"> -->
+                      <!-- <input type="search" placeholder="Buscar libros" class="w-full border-none bg-transparent px-2 text-cafe-oscuro outline-none focus:outline-none"
+                      [(ngModel)]="name" (keyup.enter)="search(1, 10, name)"> -->
+                      <!-- <button class="m-2 rounded px-2 text-cafe-oscuro hover:text-oliva" (click)="search(1, 10, name)">
+                      <i class="ri-search-line"></i>
+                      </button> -->
+                   <!-- </div>  -->
+                </div>
+                <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
+                   <a href="admin/books/add">
+                      <button class="flex select-none items-center gap-2 rounded bg-verde py-2.5 px-4 mr-5 text-xs font-semibold text-white shadow-md shadow-slate-900/10 transition-all hover:shadow-lg hover:shadow-slate-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                      type="button">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                            stroke-width="2" class="w-4 h-4">
+                            <path
+                            d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z">
+                            </path>
+                      </svg>
+                      Agregar Libro
+                      </button>
+                   </a>
+                </div>
+             </div>
+          
+          </div>
+          <div class="p-0 overflow-scroll">
+             <table class="w-full mt-4 text-left table-auto min-w-max mb-4">
+             <thead>
+                <tr>
+                    <th class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
+                        <p class="flex items-center justify-start gap-2 font-sans text-sm font-normal leading-none text-slate-500">Título</p>
+                    </th>
+                    <th class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
+                     <p class="flex items-center justify-center gap-2 font-sans text-sm font-normal leading-none text-slate-500">Autor</p>
+                     </th>
+                     <th class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
+                        <p class="flex items-center justify-center gap-2 font-sans text-sm font-normal leading-none text-slate-500">ISBN</p>
+                     </th>
+                     <th class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
+                        <p class="flex justify-end gap-2 font-sans text-sm font-normal leading-none text-slate-500">Precio</p>
+                     </th>
+                     <th class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
+                        <p class="flex items-center justify-center gap-2 font-sans text-sm font-normal leading-none text-slate-500">Agregado el</p>
+                     </th>
+                    <th class="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
+                        <p class="flex items-center justify-center gap-2 font-sans text-sm  font-normal leading-none text-slate-500">Acciones</p>
+                    </th>
+                </tr>
+             </thead>
+             <tbody>
+               <tr tr *ngFor="let book of books" class="odd:bg-white even:bg-gray-50">
+                  <td class="p-2 border-b border-slate-200">
+                     <div class="flex items-center gap-3">
+                     <img [src]="'../../../assets/img/books/' + book.photo"alt="Portada del libro"
+                           class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
+                     <div class="flex flex-col">
+                           <p class="text-sm font-semibold text-slate-700">
+                           {{book.title}}
+                           </p>
+                     </div>
+                     </div>
+                  </td>
+                  <td class="p-2 border-b border-slate-200">
+                     <div class="flex justify-center items-center">
+                        <div class="text-sm  text-slate-700">
+                           <span class="">{{book.author?.name}} {{book.author?.lastName}}</span>
+                        </div>
+                     </div>
+                  </td>
+                  <td class="p-2 border-b border-slate-200">
+                     <div class="flex justify-center items-center">
+                        <div class="text-sm text-slate-700 text-center">
+                           <span class="">{{book.isbn}}</span>
+                        </div>
+                     </div>
+                  </td>
+                  <td class="p-2 border-b border-slate-200">
+                     <div class="flex justify-end items-end">
+                        <div class="text-sm text-slate-700">
+                           <span class="">$ {{book.price}}</span>
+                        </div>
+                     </div>
+                  </td>
+                  <td class="p-2 border-b border-slate-200">
+                     <p class="text-sm text-slate-500 text-center">{{ book.createdAt | date:'MMM d, y' }}</p>
+                  </td>
+                
+                <td class="p-2 border-b border-slate-200 text-center">
+                   <div class="flex justify-center items-center font-medium text-xl">
+                      <a href="admin/books/edit/{{book.id}}">
+                         <div class="relative group">
+                            <i class="ri-pencil-fill text-blue-900/70 pr-2 hover:text-blue-600 cursor-pointer"></i>
+                            <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-blue-600 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
+                               Editar
+                            </div>
+                         </div>
+                      </a>
+                      <div class="relative group">
+                         <i class="ri-delete-bin-fill text-red-600/70 hover:text-red-600 cursor-pointer"></i>
+                         <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-red-600 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
+                            Borrar
+                         </div>
+                      </div>
+                   </div> 
+                </td>
+                </tr> 
+             </tbody>
+             </table>
+          </div>
+          <div class="flex items-center justify-between p-3">
+             <p class="block text-sm text-slate-500">
+             Página {{currentPage}} de {{ totalPages }}
+             </p>
+             <div class="flex gap-1">
+             <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" 
+                class="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                type="button">
+                Anterior
+             </button>
+             <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages" 
+                class="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                type="button">
+                Siguiente
+             </button>
+             </div>
+          </div>
+          </div>
+    </div>
+ </div>

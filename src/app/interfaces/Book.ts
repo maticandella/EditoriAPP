@@ -15,4 +15,5 @@ export interface Book {
     price: number;
     popularityScore: number;
     author?: Author;
+    createdAt: Date;
 }

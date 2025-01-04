@@ -10,9 +10,9 @@ import { AuthorsEditComponent } from './components/admin/authors/authors-edit/au
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './pages/login/login.component';
+import { BooksListComponent } from './components/admin/books/books-list/books-list.component';
 import { BooksAddComponent } from './components/admin/books/books-add/books-add.component';
 import { AuthorsSocialMediaComponent } from './components/admin/authors/authors-social-media/authors-social-media.component';
-
 
 export const routes: Routes = [
     {
@@ -24,6 +24,7 @@ export const routes: Routes = [
             { path: 'authors/add', component: AuthorsAddComponent },
             { path: 'authors/edit/:id', component: AuthorsEditComponent },
             { path: 'authors/socialmedia/:id', component: AuthorsSocialMediaComponent },
+            { path: 'books', component: BooksListComponent },
             { path: 'books/add', component: BooksAddComponent },
         ],
     },

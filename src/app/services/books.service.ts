@@ -6,6 +6,7 @@ import { Response } from '../interfaces/response/Response';
 import { BookResponse } from '../interfaces/response/BookResponse';
 import { BookByAuthorResponse } from '../interfaces/response/BookByAuthorResponse';
 import { BookPaginatedResponse } from '../interfaces/response/BookPaginatedResponse';
+import { ErrorResponse } from '../interfaces/response/ErrorResponse';
 
 @Injectable({
     providedIn: 'root'
@@ -65,4 +66,14 @@ import { BookPaginatedResponse } from '../interfaces/response/BookPaginatedRespo
         }
       });
     }
+
+    delete(id: number): Observable<HttpResponse<ErrorResponse>> {
+          return this.http.delete<ErrorResponse>(
+            `${this.adminUrl}/books/${id}`,
+            {
+              withCredentials: true,
+              observe: 'response'
+            }
+          );
+        }
 }

@@ -1,26 +1,26 @@
 <div class="pt-6 px-4">
     <div class="max-w-full mx-auto">
-       <!-- <app-modal-delete *ngIf="isModalOpen"
+       <app-modal-delete *ngIf="isModalOpen"
           [open]="isModalOpen"
           [message]="message"
           [showDeleteButton]="showDeleteButton"
           [isOperationSuccessful]="isOperationSuccessful"
           [confirmText]="'Eliminar'"
           (confirmAction)="handleConfirm()"
-          (cancelAction)="handleCancel()"> -->
-       <!-- </app-modal-delete> -->
+          (cancelAction)="handleCancel()">
+       </app-modal-delete>
     <div class="relative flex flex-col w-full h-full text-slate-700 bg-white shadow-md rounded-xl bg-clip-border">
           <div class="relative mx-4 mt-4 overflow-hidden text-slate-700 bg-white rounded-none bg-clip-border">
              <div class="flex items-center justify-between ">
                 <div>
                    <!--Buscador-->
-                   <!-- <div class="mx-auto text-center flex w-96 rounded bg-white border border-cafe-claro"> -->
-                      <!-- <input type="search" placeholder="Buscar libros" class="w-full border-none bg-transparent px-2 text-cafe-oscuro outline-none focus:outline-none"
-                      [(ngModel)]="name" (keyup.enter)="search(1, 10, name)"> -->
-                      <!-- <button class="m-2 rounded px-2 text-cafe-oscuro hover:text-oliva" (click)="search(1, 10, name)">
+                   <div class="mx-auto text-center flex w-96 rounded bg-white border border-cafe-claro">
+                      <input type="search" placeholder="Buscar libros" class="w-full border-none bg-transparent px-2 text-cafe-oscuro outline-none focus:outline-none"
+                      [(ngModel)]="title" (keyup.enter)="search(1, 10, title)">
+                      <button class="m-2 rounded px-2 text-cafe-oscuro hover:text-oliva" (click)="search(1, 10, title)">
                       <i class="ri-search-line"></i>
-                      </button> -->
-                   <!-- </div>  -->
+                      </button>
+                    </div>
                 </div>
                 <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
                    <a href="admin/books/add">
@@ -112,7 +112,7 @@
                          </div>
                       </a>
                       <div class="relative group">
-                         <i class="ri-delete-bin-fill text-red-600/70 hover:text-red-600 cursor-pointer"></i>
+                         <i (click)="openModalDeleteWithParameters(book.id, book.title)" class="ri-delete-bin-fill text-red-600/70 hover:text-red-600 cursor-pointer"></i>
                          <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-red-600 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
                             Borrar
                          </div>

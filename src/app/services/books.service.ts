@@ -67,6 +67,29 @@ import { ErrorResponse } from '../interfaces/response/ErrorResponse';
       });
     }
 
+    update(id:number, title: string, authorId: number, genreId: number, editionId: number, photo: string, isbn: string, pagesNumber: number, year: number, 
+      review: string, price: number): Observable<HttpResponse<ErrorResponse>> {
+      return this.http.put<ErrorResponse>(
+        `${this.adminUrl}/books/${id}`,
+        {
+          title: title,
+          authorId: authorId,
+          genreId: genreId,
+          editionId: editionId,
+          photo: photo,
+          isbn: isbn,
+          pagesNumber: pagesNumber,
+          year: year,
+          review: review,
+          price: price
+        },
+        {
+          withCredentials: true,
+          observe: 'response'
+        }
+      );
+    }
+
     delete(id: number): Observable<HttpResponse<ErrorResponse>> {
           return this.http.delete<ErrorResponse>(
             `${this.adminUrl}/books/${id}`,

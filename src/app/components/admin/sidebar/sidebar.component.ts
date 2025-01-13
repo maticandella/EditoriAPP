@@ -10,6 +10,8 @@ import { Component, HostListener } from '@angular/core';
 })
 export class SidebarComponent {
   @HostListener('document:click', ['$event'])
+  
+
   onClickOutside(event: MouseEvent) {
     // Lógica para determinar si el clic fue fuera de tu elemento
     console.log('Clicked outside');

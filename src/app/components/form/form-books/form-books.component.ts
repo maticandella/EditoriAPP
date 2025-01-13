@@ -7,6 +7,7 @@ import { GenreService } from '../../../services/genres.service';
 import { Genre } from '../../../interfaces/Genre';
 import { EditionService } from '../../../services/edition.service';
 import { Edition } from '../../../interfaces/Edition';
+import { AuthorService } from '../../../services/authors.service';
 
 @Component({
   selector: 'app-form-books',
@@ -21,16 +22,18 @@ export class FormBooksComponent implements OnInit, OnChanges {
 
   photoName = '';
   generalErrors: string[] = [];
+  authors: Author[] = [];
   editions: Edition[] = [];
   genres: Genre[] = [];
 
+  private authorService = inject(AuthorService);
   private editionService = inject(EditionService);
   private genreService = inject(GenreService);
 
   form: FormGroup = new FormGroup({
       title: new FormControl('', [Validators.required]),
-      authorName: new FormControl(''),
-      authorId: new FormControl('', [Validators.required, Validators.min(1)]),
+      authorName: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      authorId: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.min(1)]),
       genreId: new FormControl('', [Validators.required]),
       editionId: new FormControl('', [Validators.required]),
       photo: new FormControl(null),
@@ -55,21 +58,21 @@ export class FormBooksComponent implements OnInit, OnChanges {
         this.form.get('authorId')?.disable();
       }
 
-      // if (changes['book'] && this.book) {
-      //   this.form.patchValue({
-      //     title: this.book.title || '',
-      //     authorId: this.book.authorId || '',
-      //     genreId: this.book.genreId || '',
-      //     editionId: this.book.editionId || '',
-      //     photo: '',
-      //     isbn: this.book.isbn || '',
-      //     pagesNumber: this.book.pagesNumber || '',
-      //     year: this.book.year || '',
-      //     review: this.book.review || '',
-      //     price: this.book.price || '',
-      //   });
-      //   this.photoName = this.book?.photo || '';
-      // }
+      if (changes['book'] && this.book) {
+        this.form.patchValue({
+          title: this.book.title || '',
+          authorId: this.book.authorId || '',
+          genreId: this.book.genreId || '',
+          editionId: this.book.editionId || '',
+          photo: '',
+          isbn: this.book.isbn || '',
+          pagesNumber: this.book.pagesNumber || '',
+          year: this.book.year || '',
+          review: this.book.review || '',
+          price: this.book.price || '',
+        });
+        this.photoName = this.book?.photo || '';
+      }
     }
 
   //#region Metodos para el OnInit
@@ -104,8 +107,23 @@ export class FormBooksComponent implements OnInit, OnChanges {
     }
   }
   //#endregion
+
+  searchAuthor(page: 1, limit: 100, name: string, letter: ''): void {
+    this.authorService.search(page, limit, name, letter).subscribe(response => {
+      this.authors = response.data.items;
+    });
+  }
+
+  selectAuthor(author: Author): void {
+    this.form.patchValue({
+      authorName: `${author.name} ${author.lastName}`,
+      authorId: author.id,
+    });
+    this.authors = [];
+  }
   
   OnSubmit() {
+    this.form.get('authorId')?.enable(); //Hablita el authorId antes de enviar el formulario, para poder obtener su valor
     const formValue = this.form.value;
     const dataToEmit = {
       ...formValue,

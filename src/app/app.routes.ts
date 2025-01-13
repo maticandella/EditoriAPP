@@ -13,6 +13,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { BooksListComponent } from './components/admin/books/books-list/books-list.component';
 import { BooksAddComponent } from './components/admin/books/books-add/books-add.component';
 import { AuthorsSocialMediaComponent } from './components/admin/authors/authors-social-media/authors-social-media.component';
+import { BooksEditComponent } from './components/admin/books/books-edit/books-edit.component';
 
 export const routes: Routes = [
     {
@@ -26,6 +27,7 @@ export const routes: Routes = [
             { path: 'authors/socialmedia/:id', component: AuthorsSocialMediaComponent },
             { path: 'books', component: BooksListComponent },
             { path: 'books/add', component: BooksAddComponent },
+            { path: 'books/edit/:id', component: BooksEditComponent },
         ],
     },
     {

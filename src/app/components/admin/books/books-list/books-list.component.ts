@@ -24,7 +24,6 @@ export class BooksListComponent implements OnInit {
   isModalOpen = false;
   showDeleteButton = true;
   isOperationSuccessful = false;
-  // title: string = '';
   bookId: number = 0;
   message: string = '';
   //#endregion

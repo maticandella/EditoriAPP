@@ -10,11 +10,28 @@
             </p>
           </div>
 
-          <div class="md:col-span-5">
+          <div class="md:col-span-5 relative">
+            <!-- Autores -->
             <label class="text-slate-700" for="author">Autor</label>
-            <input formControlName="authorName" type="text" name="author" id="author" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro" value=""/>
-            <input formControlName="authorId" type="hidden" name="authorId"/>
-            <p *ngIf="form.get('authorId')?.touched && form.get('authorId')?.hasError('required')" class="mt-1 text-sm text-red-500">
+            <input  formControlName="authorName" type="text" name="author" id="author"
+            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-cafe-oscuro"
+              placeholder="Buscar autor..." 
+              [formControl]="$any(form).get('authorName')" 
+              (input)="searchAuthor(1, 100, form.get('authorName')?.value || '', '')"
+            />
+            <!-- Dropdown -->
+            <div *ngIf="authors.length > 0" class="absolute bg-white text-slate-700 border border-gray-200 rounded mt-1 w-full z-10">
+              <ul class="divide-y divide-gray-200">
+                <li
+                  *ngFor="let author of authors"
+                  (click)="selectAuthor(author)"
+                  class="p-2 hover:bg-gray-100 cursor-pointer"
+                >
+                  {{ author.name }} {{ author.lastName }}
+                </li>
+              </ul>
+            </div>
+            <p *ngIf="form.get('authorName')?.touched && form.get('authorName')?.hasError('required')" class="mt-1 text-sm text-red-500">
               El autor es obligatorio.
             </p>
           </div>
@@ -111,7 +128,7 @@
 
           <div class="md:col-span-5 text-right mt-5">
             <div class="inline-flex items-end">
-              <button class="bg-verde hover:bg-oliva text-white font-bold py-2 px-4 rounded" type="submit" [disabled]="form.invalid">{{ book ? 'Modificar libro' : 'Agregar libro' }}</button>
+              <button class="bg-verde hover:bg-oliva text-white font-bold py-2 px-4 rounded cursor-pointer" type="submit" [disabled]="form.invalid">{{ book ? 'Modificar libro' : 'Agregar libro' }}</button>
             </div>
             <div *ngIf="generalErrors.length > 0" class="mt-4 text-red-500">
               <ul>

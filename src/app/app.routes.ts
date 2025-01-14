@@ -14,6 +14,7 @@ import { BooksListComponent } from './components/admin/books/books-list/books-li
 import { BooksAddComponent } from './components/admin/books/books-add/books-add.component';
 import { AuthorsSocialMediaComponent } from './components/admin/authors/authors-social-media/authors-social-media.component';
 import { BooksEditComponent } from './components/admin/books/books-edit/books-edit.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
@@ -21,6 +22,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         component: AdminLayoutComponent,
         children: [
+            { path: '', component: DashboardComponent },
             { path: 'authors', component: AuthorsListComponent },
             { path: 'authors/add', component: AuthorsAddComponent },
             { path: 'authors/edit/:id', component: AuthorsEditComponent },

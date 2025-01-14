@@ -27,7 +27,8 @@ export class AuthorsAddComponent {
   */
   create(formValue: { name: string; lastName: string; nationalityId: number; note: string }): void {
     const { name, lastName, nationalityId, note } = formValue;
-    this.authorService.create(name, lastName, nationalityId, note, this.formAuthorsComponent.photoName || '')
+    const photoName = this.formAuthorsComponent.photoName || "../../../assets/img/authors/pordefecto.jpg";
+    this.authorService.create(name, lastName, nationalityId, note, photoName)
       .subscribe({
           next: (response) => this.handleCreateSuccess(response),
           error: (error) => this.handleCreateError(error)

@@ -29,4 +29,11 @@ import { Auth } from '../interfaces/Auth';
             { withCredentials: true }
         );
     }
+
+    logout(): Observable<Response<null>> {
+        return this.http.post<Response<null>>(`${this.adminUrl}/users/logout`,
+            {},
+            { withCredentials: true }
+        );
+    }
 }

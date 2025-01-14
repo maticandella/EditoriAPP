@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-admin',
@@ -9,8 +11,22 @@ import { Component } from '@angular/core';
 })
 export class HeaderAdminComponent {
   menuOpen = false;
+  authService = inject(AuthService);
+
+  constructor(private router: Router) {}
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
+
+  logout() {
+    this.authService.logout().subscribe({
+      next: (response) => {
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+      },
+    });
+  }
+  
 }

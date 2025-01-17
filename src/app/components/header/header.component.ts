@@ -12,7 +12,6 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   menuOpen = false;
   navLinks = [
-    { href: 'home', text: 'Inicio' },
     { href: 'authors', text: 'Autores' },
     { href: 'books', text: 'Libros' },
     { href: '#review', text: 'Sobre Nosotros' }

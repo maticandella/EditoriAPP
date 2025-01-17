@@ -3,7 +3,7 @@
 }
 
 .nav-link:hover {
-    @apply text-oliva;
+    @apply text-oliva cursor-pointer;
 }
 
 .title {

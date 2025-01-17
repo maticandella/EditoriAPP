@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from './../../components/pagination/pagination.component';
 import { GenreService } from '../../services/genres.service';
 import { Genre } from '../../interfaces/Genre';
+import { ShoppingCartService } from '../../services/shoppingCart.service';
 
 @Component({
   selector: 'app-books',
@@ -24,13 +25,18 @@ export class BooksComponent implements OnInit {
   totalPages: number = 1;
   totalAuthors: number = 0;
   currentPage: number = 1;
+  showToast: boolean = false;
+  toastMessage: string = '';
+  private toastQueue: string[] = [];
+  private toastTimeout: any;
 
   private bookService = inject(BookService);
   private genreService = inject(GenreService);
+  private shoppingCartService = inject(ShoppingCartService)
   private router = inject(Router);
 
   ngOnInit(): void {
-    this.getBooksPaginated(this.currentPage, 10);
+    this.getBooksPaginated(this.currentPage, 12);
     this.getGenres();
   }
 
@@ -70,20 +76,43 @@ export class BooksComponent implements OnInit {
     } else {
       this.selectedCategories.splice(index, 1);
     }
-    this.search(this.currentPage, 10, '', this.selectedCategories); 
+    this.search(this.currentPage, 12, '', this.selectedCategories); 
   }
 
   nextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
-      this.getBooksPaginated(this.currentPage, 10);
+      this.getBooksPaginated(this.currentPage, 12);
     }
   }
 
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.getBooksPaginated(this.currentPage, 10);
+      this.getBooksPaginated(this.currentPage, 12);
+    }
+  }
+
+  addToShoppingCart(book: Book) {
+    this.shoppingCartService.addToCart(book, 1);
+    this.showToastMessage(`${book.title} fue añadido al carrito de compras.`);
+  }
+
+  showToastMessage(message: string) {
+    if (this.showToast) {
+      this.toastQueue.push(message); //Cola de mensajes, para que no se pisen uno con otro
+    } else {
+      this.toastMessage = message;
+      this.showToast = true;
+  
+      this.toastTimeout = setTimeout(() => {
+        this.showToast = false;
+  
+        if (this.toastQueue.length > 0) {
+          const nextMessage = this.toastQueue.shift();
+          this.showToastMessage(nextMessage!);
+        }
+      }, 3000);
     }
   }
 }

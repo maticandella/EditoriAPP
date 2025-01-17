@@ -17,7 +17,36 @@
     <!-- Libros -->
     <div class="lg:col-span-5 md:col-span-4 sm:col-span-1">
       <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <div *ngFor="let book of books" class="relative w-full aspect-[2/3]">
+        <div class="bg-white p-2 transform transition duration-300 hover:scale-105" *ngFor="let book of books">
+          <img [src]="'../../../assets/img/books/' + book.photo" alt="Portada del libro" class="h-62 w-full object-cover">
+          <!-- <div class="flex items-center">
+            <p class="text-lg font-semibold text-gray-900 mt-1 ml-auto mr-2">${{book.price}}</p>
+          </div> -->
+          <ul class="mt-1 flex flex-wrap">
+            <li class="ml-1 mr-auto relative group">
+              <!-- <a href="#" class="flex text-gray-400 hover:text-gray-600"> -->
+                <i class="ri-shopping-cart-2-fill text-xl cursor-pointer" (click)="addToShoppingCart(book)"></i>
+              <!-- </a> -->
+              <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-verde text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
+                Añadir al carrito
+              </div>
+            </li>
+            <li class="mr-2 relative group">
+              <!-- <a href="#" class="flex text-gray-400 hover:text-gray-600"> -->
+                  <!-- <i class="ri-message-2-fill text-xl"></i>
+                3 -->
+                <p class="text-lg font-semibold text-gray-900 ml-auto">${{book.price}}</p>
+              <!-- </a> -->
+            </li>
+            <!-- <li class="mr-1 relative group">
+              <a href="#" class="flex text-gray-400 hover:text-gray-600">
+                <i class="ri-heart-fill text-xl"></i>
+                3
+              </a>
+            </li> -->
+          </ul>
+        </div>
+        <!-- <div *ngFor="let book of books" class="relative w-full aspect-[2/3]">
           <a [href]="'book/' + book.id" class="block w-full h-full">
             <img [src]="'../../../assets/img/books/' + book.photo" alt="Portada del libro" class="w-full h-full object-cover rounded-md shadow-lg cursor-pointer hover:opacity-80 transition duration-500">
           </a>
@@ -39,23 +68,14 @@
             </a>
           </div>
           
-
           <div class="flex items-center">
-            <!-- <i class="ri-heart-line text-lg text-red-600"></i>
-            <i class="ri-heart-3-fill text-lg text-red-600"></i> -->
             <p class="mr-2 text-lg font-semibold text-gray-900 ml-auto">${{book.price}}</p>
-          </div>
-          
-            <!-- <a href="#" class="flex items-center justify-center rounded-md mt-2 bg-verde text-white px-5 py-2.5 text-center text-sm font-medium hover:bg-oliva focus:outline-none focus:ring-4 focus:ring-oliva">
-              <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg> Añadir al carrito</a> -->
-
+          </div> -->
 
              <!-- Botones redondos -->
-            <div class="flex justify-center space-x-3 mt-1">
+            <!-- <div class="flex justify-center space-x-3 mt-1"> -->
               <!-- Botón para lista de deseos -->
-              <div class="relative group">
+              <!-- <div class="relative group">
                 <button 
                   class="rounded-full bg-red-500 text-white w-10 h-10 flex items-center justify-center hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">
                   <i class="ri-heart-line text-lg"></i>
@@ -63,9 +83,9 @@
                 <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-red-500 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
                   Añadir a Lista de Deseos
                 </div>
-              </div>
+              </div> -->
               <!-- Botón para ver más -->
-              <div class="relative group">
+              <!-- <div class="relative group">
                 <a [href]="'book/' + book.id"
                   class="rounded-full bg-blue-500 text-white w-10 h-10 flex items-center justify-center hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
                   <i class="ri-eye-line text-lg"></i>
@@ -73,9 +93,9 @@
                 <div class="absolute left-1/2 -translate-x-1/2 mt-1 w-max px-2 rounded bg-blue-500 text-white text-sm opacity-0 group-hover:opacity-70 transition-opacity">
                   Ver más
                 </div>
-              </div>
+              </div> -->
               <!-- Botón para añadir al carrito -->
-              <div class="relative group">
+              <!-- <div class="relative group">
                 <button 
                   class="rounded-full bg-verde text-white w-10 h-10 flex items-center justify-center hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
                   <i class="ri-shopping-cart-line text-lg"></i>
@@ -84,8 +104,13 @@
                   Añadir al carrito
                 </div>
               </div>
-            </div>
-        </div>
+            </div> -->
+        <!-- </div> -->
+      </div>
+
+      <div *ngIf="showToast" class="bg-green-600 py-2 px-4 rounded-md text-white text-center fixed top-20 right-4 flex gap-4">
+        <p>{{ toastMessage }}</p>
+        <span class="cursor-pointer font-bold" onclick="return this.parentNode.remove()"><sup>X</sup></span>
       </div>
 
       <!-- Paginación -->

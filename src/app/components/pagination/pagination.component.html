@@ -20,18 +20,18 @@
           </p>
       <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
         <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" 
-                class="relative inline-flex items-center px-2 py-2 rounded-l-md text-cafe-oscuro ring-1 ring-cafe-oscuro hover:bg-cafe-oscuro hover:text-white">
+                class="relative inline-flex items-center px-2 py-2 rounded-l-md text-cafe-oscuro ring-1 ring-cafe-oscuro hover:bg-cafe-oscuro hover:text-white cursor-pointer">
           Anterior
         </button>
         <button *ngFor="let page of [].constructor(totalPages); let i = index" 
                 (click)="goToPage(i + 1)"
                 [class.bg-cafe-oscuro]="currentPage === i + 1"
                 [class.text-white]="currentPage === i + 1"
-                class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-white ring-1 ring-cafe-oscuro hover:bg-cafe-oscuro hover:text-white">
+                class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-white ring-1 ring-cafe-oscuro hover:bg-cafe-oscuro hover:text-white cursor-pointer">
           {{ i + 1 }}
         </button>
         <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages" 
-                class="relative inline-flex items-center px-2 py-2 rounded-r-md text-cafe-oscuro ring-1 ring-cafe-oscuro hover:bg-cafe-oscuro hover:text-white">
+                class="relative inline-flex items-center px-2 py-2 rounded-r-md text-cafe-oscuro ring-1 ring-cafe-oscuro hover:bg-cafe-oscuro hover:text-white cursor-pointer">
           Siguiente
         </button>
       </nav>

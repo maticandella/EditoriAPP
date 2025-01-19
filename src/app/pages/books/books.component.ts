@@ -69,6 +69,11 @@ export class BooksComponent implements OnInit {
     });
   }
 
+  onPageChange(newPage: number): void {
+    this.currentPage = newPage;
+    this.search(this.currentPage, 12, this.title, this.selectedCategories);
+  }
+
   toggleCategory(categoryId: number): void {
     const index = this.selectedCategories.indexOf(categoryId);
     if (index === -1) {

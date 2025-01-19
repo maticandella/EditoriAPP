@@ -109,6 +109,7 @@ export class BooksAddComponent implements OnInit, AfterViewInit {
   }
 
   handleConfirm() {
+    console.log("pasa por el handleconfirm:")
     this.isModalOpen = false;
     this.formBooksComponent.form.reset();
     this.formBooksComponent.photoName = '';

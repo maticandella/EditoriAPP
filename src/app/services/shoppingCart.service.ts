@@ -1,12 +1,23 @@
 import { Injectable } from "@angular/core";
 import { ShoppingCart } from '../interfaces/shoppingCart/ShoppingCart';
 import { Book } from "../interfaces/Book";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
   })
   
 export class ShoppingCartService {
+    private cartSubject = new BehaviorSubject<ShoppingCart>(this.getCart());
+    cart$ = this.cartSubject.asObservable();
+
+    private totalQuantity = new BehaviorSubject<number>(0);
+    totalQuantity$ = this.totalQuantity.asObservable();
+
+    constructor() {
+        this.updateTotalQuantity();
+    }
+    
     getCart(): ShoppingCart {
         const cart = localStorage.getItem('shoppingCart');   
         return cart ? JSON.parse(cart) : { items: [], totalPrice: 0 };
@@ -14,6 +25,8 @@ export class ShoppingCartService {
 
     saveCart(cart: ShoppingCart): void {
         localStorage.setItem("shoppingCart", JSON.stringify(cart));
+        this.cartSubject.next(cart);
+        this.updateTotalQuantity();
     }
 
     addToCart(book: Book, quantity: number): void {
@@ -34,5 +47,23 @@ export class ShoppingCartService {
 
         cart.totalPrice = cart.items.reduce((sum, item) => sum + item.totalItemPrice, 0);
         this.saveCart(cart);
+    }
+
+    removeFromCart(bookId: number): void {
+        const cart = this.getCart();
+        cart.items = cart.items.filter(item => item.book.id !== bookId);
+        cart.totalPrice = cart.items.reduce((sum, item) => sum + item.totalItemPrice, 0);
+        this.saveCart(cart);
+    }
+
+    clearCart(): void {
+        localStorage.removeItem("shoppingCart");
+        this.totalQuantity.next(0);
+    }
+
+    private updateTotalQuantity(): void {
+        const cart = this.getCart();
+        const total = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+        this.totalQuantity.next(total); // Acá emito el nuevo valor al BehaviorSubject
     }
 }

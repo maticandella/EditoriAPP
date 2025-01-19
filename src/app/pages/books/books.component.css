@@ -1,0 +1,5 @@
+.book-image {
+    height: 280px; /* Altura deseada */
+    width: 100%; /* Asegura que se ajuste horizontalmente */
+    object-fit: cover; /* Recorta la imagen para llenar el contenedor */
+  }

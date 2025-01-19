@@ -1,4 +1,5 @@
 import { Author } from "./Author";
+import { Edition } from "./Edition";
 
 export interface Book {
     id: number,
@@ -15,5 +16,6 @@ export interface Book {
     price: number;
     popularityScore: number;
     author?: Author;
+    edition?: Edition;
     createdAt: Date;
 }

@@ -1,1 +1,48 @@
-<p>books-details works!</p>
+<div class="container bg-crema text-cafe-oscuro py-20 mt-10">
+    <div class="grid grid-cols-5 grid-rows-5 gap-4">
+        <!-- Columna 1 -->
+        <div class="row-span-5">
+            <img [src]="'../../../assets/img/books/' + book.photo" alt="Portada del libro">
+        </div>
+
+        
+        <!-- Columna 2 -->
+        <div class="col-span-3 row-span-5">
+            <div class="p-2">
+                <h3 class="font-bold text-slate-800 mb-1">{{book.title}}</h3>
+                <a [href]="'author/' + book.author?.id">
+                    <h4 class="text-oliva font-semibold mb-3 cursor-pointer">{{book.author?.name}} {{book.author?.lastName}}</h4>
+                </a>
+                <p>{{book.review}}</p>
+            </div>
+        </div>
+
+        <!-- Columna 3 -->
+        <div class="row-span-5 col-start-5">
+            <div class="rounded-sm bg-oliva">
+                <div class="p-2 flex flex-col items-center justify-center">
+                    <div class="flex flex-col items-center justify-center m-3">
+                        <i class="ri-book-3-line text-yellow-500 text-4xl"></i>
+                        <h4 class="font-bold font-Jost text-yellow-500 text-xl">N.º Páginas</h4> 
+                        <p class="font-semibold text-white">{{book.pagesNumber}}</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center m-3">
+                        <i class="ri-barcode-box-line text-yellow-500 text-4xl"></i>
+                        <h4 class="font-bold font-Jost text-yellow-500 text-xl">ISBN</h4> 
+                        <p class="font-semibold text-white">{{book.isbn}}</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center m-3">
+                        <i class="ri-bookmark-line text-yellow-500 text-4xl"></i>
+                        <h4 class="font-bold font-Jost text-yellow-500 text-xl">Formato</h4> 
+                        <p class="font-semibold text-white">{{book.edition?.description}}</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center m-3">
+                        <i class="ri-calendar-2-line text-yellow-500 text-4xl"></i>
+                        <h4 class="font-bold font-Jost text-yellow-500 text-xl">Año</h4> 
+                        <p class="font-semibold text-white">{{book.year}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

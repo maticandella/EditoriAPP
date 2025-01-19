@@ -15,7 +15,7 @@ import { BooksAddComponent } from './components/admin/books/books-add/books-add.
 import { AuthorsSocialMediaComponent } from './components/admin/authors/authors-social-media/authors-social-media.component';
 import { BooksEditComponent } from './components/admin/books/books-edit/books-edit.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard/dashboard.component';
-import { BooksDetailsComponent } from './pages/books-details/books-details.component';
+import { BookDetailsComponent } from './pages/books-details/book-details.component';
 
 export const routes: Routes = [
     {
@@ -43,7 +43,7 @@ export const routes: Routes = [
             { path: 'authors', component: AuthorsComponent },
             { path: 'author/:id', component: AuthorDetailsComponent },
             { path: 'books', component: BooksComponent },
-            { path: 'book/:id', component: BooksDetailsComponent },
+            { path: 'book/:id', component: BookDetailsComponent },
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: '**', redirectTo: 'home' },
         ]

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Response } from '../../interfaces/response/Response';
 import { BookResponse } from '../../interfaces/response/BookResponse';
 
+
 @Component({
   selector: 'app-books-details',
   standalone: true,
@@ -14,8 +15,8 @@ import { BookResponse } from '../../interfaces/response/BookResponse';
 export class BookDetailsComponent implements OnInit {
   book: Book = {} as Book;
 
-  private bookService = inject(BookService);
   private activatedRoute = inject(ActivatedRoute);
+  private bookService = inject(BookService);
 
   ngOnInit(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -23,12 +24,12 @@ export class BookDetailsComponent implements OnInit {
   }
 
   getBookById(id: number): void {
-      if (id) {
-        this.bookService.getById(id).subscribe(
-          (response: Response<BookResponse>) => {
-            this.book = response.data.book;
-          }
-        );
-      }
+    if (id) {
+      this.bookService.getById(id).subscribe(
+        (response: Response<BookResponse>) => {
+          this.book = response.data.book;
+        }
+      );
     }
+  }
 }

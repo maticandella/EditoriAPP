@@ -1,5 +1,5 @@
 <div class="container bg-crema text-cafe-oscuro py-20 mt-10">
-    <div class="grid grid-cols-5 grid-rows-5 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 grid-rows-5 gap-4">
         <!-- Columna 1 -->
         <div class="row-span-5">
             <img [src]="'../../../assets/img/books/' + book.photo" alt="Portada del libro">
@@ -7,7 +7,7 @@
 
         
         <!-- Columna 2 -->
-        <div class="col-span-3 row-span-5">
+        <div class="col-span-1 lg:col-span-3 row-span-5">
             <div class="p-2">
                 <h3 class="font-bold text-slate-800 mb-1">{{book.title}}</h3>
                 <a [href]="'author/' + book.author?.id">
@@ -18,8 +18,8 @@
         </div>
 
         <!-- Columna 3 -->
-        <div class="row-span-5 col-start-5">
-            <div class="rounded-sm bg-oliva">
+        <div class="row-span-5 col-span-1 md:col-span-2 lg:col-start-5">
+            <div class="rounded-sm bg-oliva p-1">
                 <div class="p-2 flex flex-col items-center justify-center">
                     <div class="flex flex-col items-center justify-center m-3">
                         <i class="ri-book-3-line text-yellow-500 text-4xl"></i>

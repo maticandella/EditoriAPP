@@ -27,7 +27,7 @@ export class AuthorsComponent implements OnInit {
   private router = inject(Router);
 
   ngOnInit(): void {
-    this.getAuthorsPaginated(this.currentPage, 10);
+    this.getAuthorsPaginated(this.currentPage, 12);
   }
 
   getAuthorsPaginated(page: number, limit: number) {
@@ -40,7 +40,7 @@ export class AuthorsComponent implements OnInit {
   }
 
   onPageChange(page: number): void {
-    this.search(page, 10, this.name);
+    this.search(page, 12, this.name);
   }
 
   search(page: number, limit: number, name: string, letter: string = ''): void {
@@ -54,20 +54,20 @@ export class AuthorsComponent implements OnInit {
   }
 
   filterByLetter(letter: string): void {
-    this.search(1, 10, this.name, letter); 
+    this.search(1, 12, this.name, letter); 
   }
 
   nextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
-      this.getAuthorsPaginated(this.currentPage, 10);
+      this.getAuthorsPaginated(this.currentPage, 12);
     }
   }
 
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.getAuthorsPaginated(this.currentPage, 10);
+      this.getAuthorsPaginated(this.currentPage, 12);
     }
   }
 }

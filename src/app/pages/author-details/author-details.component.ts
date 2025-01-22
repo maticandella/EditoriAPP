@@ -20,6 +20,7 @@ import { Book } from '../../interfaces/Book';
 export class AuthorDetailsComponent implements OnInit {
   author: Author = {} as Author;
   books: Book[] = [];
+  showFlag: boolean = false;
 
   private authorService = inject(AuthorService);
   private bookService = inject(BookService);
@@ -38,6 +39,7 @@ export class AuthorDetailsComponent implements OnInit {
       this.authorService.getById(id).subscribe(
         (response: Response<AuthorResponse>) => {
           this.author = response.data.author;
+          this.setFlagVisibility();
         },
         (error) => {
           console.error('Error fetching author details', error);
@@ -62,5 +64,9 @@ export class AuthorDetailsComponent implements OnInit {
     } else {
       console.error('Invalid author id');
     }
+  }
+
+  setFlagVisibility(): void {
+    this.showFlag = !!this.author?.nationality?.flag;
   }
 }

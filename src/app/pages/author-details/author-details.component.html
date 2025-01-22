@@ -1,46 +1,47 @@
 <div class="container bg-crema text-cafe-oscuro py-20 mt-10">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-    <!--Columna de Foto-->
-    <div class="col-span-1 flex justify-center md:justify-start">
-      <img [src]="'../../../assets/img/authors/' + author.photo" alt="Foto de {{ author.name }}" 
-        class="shadow-md border rounded-full object-cover w-48 h-48" />
-    </div>
-    
-    <!--Columna de información-->
-    <div class="col-span-1 md:col-span-1 lg:col-span-2 xl:col-span-4">
-      <div class="flex items-center space-x-3 mb-4">
-        <h3 class="font-bold">{{ author.name }} {{ author.lastName }}</h3>
-        <img [src]="author.nationality?.flag" alt="{{ author.nationality?.name }} flag" class="w-8 h-auto transform transition-transform hover:scale-110 shadow-lg rounded-sm"/>
+  <div class="min-h-screen">
+    <div class="grid grid-cols-1 lg:grid-cols-5 grid-rows-5 gap-4">
+      <!-- Columna 1 -->
+      <div class="row-span-5 flex justify-center">
+        <img class="shadow-md border rounded-full object-cover w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48" [src]="'../../../assets/img/authors/' + author.photo" [alt]="'Foto de' + author.name + ' ' + author.lastName">
       </div>
-
-      <p class="font-Jost xl:text-xl">{{ author.note }}</p>
-
-      <!--Redes sociales-->
-      <div class="social-media mb-4">
-        <div class="flex space-x-4 justify-end pt-4">
-          <a *ngFor="let social of author.socialMediaAccounts" 
-             [href]="social?.url" target="_blank" class="text-3xl text-cafe-intermedio transition-transform transform hover:text-cafe-claro hover:scale-150">
-            <i [ngClass]="'ri-' + social.socialMediaType?.icon + '-fill'"></i>
-          </a>
+  
+      <!-- Columna 2 -->
+      <div class="col-span-1 lg:col-span-4 row-span-5">
+        <div class="flex items-center gap-2 mb-1">
+          <h3 class="font-bold text-slate-800">{{ author.name }} {{ author.lastName }}</h3>
+          <img *ngIf="showFlag" [src]="'../../../assets/img/flags/' + author.nationality?.flag + '.svg'" alt="{{ author.nationality?.name }} flag" class="w-8 h-auto object-cover shadow-lg rounded-sm"/>
+        </div>
+        <p class="font-Jost xl:text-lg">{{ author.note }}</p>
+  
+        <!-- Redes -->
+        <div class="flex flex-row items-center justify-start gap-1 mt-3 text-xl">
+            <div *ngFor="let social of author.socialMediaAccounts" class="flex flex-row justify-center">
+                <a [href]="social?.url" target="_blank">
+                  <button [ngClass]="social.socialMediaType?.icon" class="bg-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full mr-2 hover:scale-110" type="button">
+                    <i [ngClass]="'ri-' + social.socialMediaType?.icon + '-fill'"></i>
+                  </button>
+                </a>
+            </div>
         </div>
       </div>
     </div>
 
     <!--Sus libros-->
-    <div class="container col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-5">
+    <div class="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-5 mt-4">
       <div *ngIf="books.length > 0">
         <div class="mb-4 w-full text-center">
           <h3 class="font-Lobster font-bold text-cafe-oscuro">Sus libros</h3>
         </div>
-
+        
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           <div *ngFor="let book of books">
             <a [href]="'book/' + book.id" class="block w-full h-full">
               <img [src]="'../../../assets/img/books/' + book.photo" class="object-cover h-full w-full border rounded-md shadow-lg cursor-pointer hover:-translate-y-1 hover:opacity-80 duration-300">
             </a>
           </div>
-          
         </div>
+        
       </div>
     </div>
   </div>

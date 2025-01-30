@@ -13,8 +13,11 @@ Este proyecto es parte de mi aprendizaje en desarrollo frontend. Aquí aplicaré
 * TailwindCSS
 
 ## Funcionalidades principales 📌
+
 ✅ Panel administrativo, para gestionar libros y autores
+
 ✅ Listados con buscador y filtros de libros y autores
+
 ✅ Simulación de carrito de compras
 
 ## Autor ✒️

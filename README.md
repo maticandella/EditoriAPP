@@ -8,7 +8,7 @@ En este proyecto iré incorporando todos los conocimientos adquiridos en torno a
 
 ## Construido con 🛠️
 
-* Angular
+* Angular 17
 * TypeScript
 * Tailwind
 

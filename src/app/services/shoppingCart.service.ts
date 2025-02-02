@@ -49,6 +49,27 @@ export class ShoppingCartService {
         this.saveCart(cart);
     }
 
+    removeOneFromCart(book: Book): void {
+        const cart = this.getCart();
+        const existingItemIndex = cart.items.findIndex(item => item.book.id === book.id);
+
+        if (existingItemIndex !== -1) {
+            const existingItem = cart.items[existingItemIndex];
+
+            if (existingItem.quantity > 1) {
+                existingItem.quantity-= 1;
+                existingItem.totalItemPrice = existingItem.quantity * book.price;
+            }
+        }
+        else {
+            // Si la cantidad es 1, elimino el item del carrito
+            cart.items.splice(existingItemIndex, 1);
+        }
+
+        cart.totalPrice = cart.items.reduce((sum, item) => sum + item.totalItemPrice, 0);
+        this.saveCart(cart);
+    }
+
     removeFromCart(bookId: number): void {
         const cart = this.getCart();
         cart.items = cart.items.filter(item => item.book.id !== bookId);

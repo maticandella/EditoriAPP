@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Component, AfterViewInit, inject } from '@angular/core';
 import Swiper, { Navigation, Pagination } from 'swiper';
 import { GenreService } from '../../services/genres.service';
+import { HeroComponent } from "../../components/hero/hero/hero.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HeroComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

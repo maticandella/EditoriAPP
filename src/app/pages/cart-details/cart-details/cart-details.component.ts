@@ -46,4 +46,8 @@ export class CartDetailsComponent implements OnInit {
   showWarningInPurchase() {
     this.showWarning = true;
   }
+
+  formatPrice(value?: number): string {
+    return value !== undefined ? value.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0,00';
+  }
 }

@@ -20,10 +20,10 @@
                             <span class="font-semibold cursor-pointer rounded-r bg-cafe-intermedio py-1 px-3 hover:bg-oliva hover:text-white"
                                 (click)="addToShoppingCart(item.book)"> + </span>
                         </div>
-                        <p class="font-bold text-black text-lg">${{ item.totalItemPrice }}</p>
+                        <p class="font-bold text-black text-lg">${{ formatPrice(item.totalItemPrice) }}</p>
                     </div>
 
-                    <div class="text-xs text-gray-600">{{ item.book.price }} x {{ item.quantity }}</div>
+                    <div class="text-xs text-gray-600">${{ formatPrice(item.book.price) }} x {{ item.quantity }}</div>
                 </div>
 
                 <!-- Eliminar -->
@@ -45,9 +45,9 @@
             <p class="text-xl font-bold text-center">Resumen</p>
             <div class="border-b border-oliva opacity-50 my-2"></div>
             <p class="text-lg">{{ totalQuantity$ | async }} libro/s</p>
-            <div class="flex justify-between items-center mt-2 text-black">
-                <p class="font-bold text-lg">Total</p>
-                <p class="font-semibold text-lg">${{cart?.totalPrice}}</p>
+            <div class="flex justify-between items-center mt-2 text-black font-bold text-lg">
+                <p>Total</p>
+                <p>${{ formatPrice(cart?.totalPrice) }}</p>
             </div>
             <button class="mt-4 p-2 bg-verde text-xl text-white font-medium rounded-md w-full hover:bg-green-700" (click)="showWarningInPurchase()">Comprar</button>
             <p class="text-xs text-red-500 mt-1" *ngIf="showWarning">*Esto es solo una simulación de compra</p>

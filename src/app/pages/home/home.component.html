@@ -1,73 +1,125 @@
-<!-- <section class="px-3 py-5 bg-white lg:py-10"> -->
-  <div class="pt-20 grid grid-cols-1 items-center justify-items-center">
-    <app-hero></app-hero>
-    <!-- <img class="object-cover" src="../../../assets/img/hero/1.png" alt="">  -->
-    <!--Slider-->
-     <!-- <div class="swiper multiple-slide-hero-carousel w-full swiper-container relative">
-      <div class="swiper-wrapper mb-16 group object-cover">
-        <div class="swiper-slide cursor-pointer">
-          <img src="../../../assets/img/hero/1.png" alt="portada novedad 1">
-        </div>
-        <div class="swiper-slide cursor-pointer">
-          <img src="../../../assets/img/hero/2.png" alt="portada novedad 2">
-        </div>
-        <div class="swiper-slide cursor-pointer">
-          <img src="../../../assets/img/hero/3.png" alt="portada novedad 3">
-        </div>
-      </div> -->
-
-        <!-- Contenedor de paginación  -->
-      <!-- <div class="swiper-pagination flex justify-center"></div>
-      
-    </div>  -->
+<!-- Hero -->
+<div class="w-screen h-screen overflow-hidden relative before:absolute before:bg-gradient-to-r from-black/85 to-transparent before:h-full before:w-full before:top-0 before:left-0 before:z-10">
+  <img src="../../../assets/img/hero/personaLeyendo.jpg" class="absolute w-full h-full object-cover" alt="Persona leyendo">
+  <div class="relative z-20 max-w-screen-lg mx-auto grid grid-cols-12 h-full items-center px-6">
+    <div class="col-span-8 lg:col-span-6">
+      <h1 class="text-white font-extrabold text-4xl md:text-5xl mb-6 leading-tight">
+        Te llevamos la Editorial a tu casa
+      </h1>
+      <p class="text-gray-200 text-lg md:text-xl leading-relaxed">
+        Para descubrir los mejores títulos de nuestra editorial y encontrar tu próxima gran lectura.
+      </p>
+        <button routerLink="/books" class="mt-8 text-white uppercase py-4 px-8 md:px-10 text-sm md:text-base font-medium border border-white transition-all duration-300 bg-white/10 hover:bg-white hover:text-black">
+          Explorar Libros
+        </button>
+    </div>
   </div>
-<!-- </section> -->
-
-
-<div class="container mx-auto relative">
-  <!-- <div class="group flex justify-center items-center"> -->
-    
-    <!--Slider-->
-     <!-- <div class="swiper multiple-slide-hero-carousel w-full swiper-container relative">
-      <div class="swiper-wrapper mb-16">
-        <div class="swiper-slide cursor-pointer">
-          <img src="../../../assets/img/hero/hero_pericles.png" alt="portada novedad 1">
-        </div>
-        <div class="swiper-slide cursor-pointer">
-          <img src="../../../assets/img/hero/cuando-el-hielo-deje-de-crujir.png" alt="portada novedad 1">
-        </div>
-      </div>
-
-        Contenedor de paginación 
-      <div class="swiper-pagination flex justify-center"></div>
-      
-    </div> -->
-  <!-- </div> -->
 </div>
 
-|<div class="container mx-auto mt-5 relative">
-    <div class="container mx-auto text-center m-5">
-        <h2 class="text-4xl font-bold text-cafe-oscuro font-Jost">Géneros destacados</h2>
+<!-- Novedades -->
+<div class="container mx-auto px-4 py-8">
+  <div class="text-center mb-8">
+    <h2 class="font-black text-cafe-oscuro text-4xl mb-2">Novedades</h2>
+    <div class="flex flex-row gap-2 justify-center items-center">
+      <i class="ri-error-warning-fill text-xl text-oliva"></i>
+      <p class="text-oliva">Los nombres y obras mostrados son propiedad de sus respectivos autores y editoriales.</p>
     </div>
+    <p class="text-oliva">Este proyecto es una simulación sin fines de lucro.</p>
+  </div>
 
-    <!-- Botón anterior (left) -->
-    <button id="slider-button-left" class="swiper-button-prev group flex justify-center items-center text-cafe-claro hover:text-cafe-oscuro absolute left-1 top-1/2 transform -translate-y-1/2"></button>
+  <div class="container grid gap-4 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-1">
+    <div class="lg:col-span-6 md:col-span-4 sm:col-span-1">
+      <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div class="bg-white p-2 transform transition duration-300 hover:scale-105" *ngFor="let book of books">
+          <a [href]="'book/' + book.id">
+            <img class="h-full w-full object-cover cursor-pointer" [src]="'../../../assets/img/books/' + book.photo" alt="Portada del libro">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!--Slider-->
-    <div class="swiper multiple-slide-carousel md:max-w-[95%] sm:max-w-[85%] swiper-container relative">
-      <div class="swiper-wrapper mb-16 pb-10">
-        <div class="swiper-slide cursor-pointer" *ngFor="let genre of genres">
-            <div class="bg-crema h-[250px] rounded-2xl flex flex-col justify-center items-center transition-all duration-200 hover:bg-cafe-oscuro hover:text-white group">
+<!-- Géneros destacados -->
+<div class="container mx-auto relative">
+  <div class="container mx-auto text-center m-5">
+      <h2 class="font-black text-cafe-oscuro text-4xl mb-2">Géneros destacados</h2>
+  </div>
+
+  <!-- Botón anterior (left) -->
+  <button id="slider-button-left" class="swiper-button-prev group flex justify-center items-center text-cafe-oscuro hover:text-oliva absolute left-1 top-1/2 transform -translate-y-1/2"></button>
+
+  <!--Slider-->
+  <div class="swiper multiple-slide-carousel md:max-w-[95%] sm:max-w-[85%] swiper-container relative">
+    <div class="swiper-wrapper mb-16 pb-10">
+      <div class="swiper-slide cursor-pointer" *ngFor="let genre of genres">
+        <a [routerLink]="['/books']" [queryParams]="{ genre: genre.id }">
+            <div class="bg-crema h-[250px] rounded-2xl flex flex-col justify-center items-center transition-all duration-200 hover:bg-oliva hover:text-white group">
               <div class="bg-cafe-oscuro text-white rounded-full p-3 mb-3 group-hover:bg-white group-hover:text-cafe-oscuro">
                 <i [ngClass]="genre.icon" class="text-5xl"></i>
               </div>
                 <p class="text-cafe-oscuro font-Lobster text-2xl text-center mb-2 group-hover:text-white">{{ genre.description }}</p>
                 <p class="text-cafe-oscuro group-hover:text-white text-center pl-2 pr-2">{{ genre.overview }}</p>
             </div>
-        </div>
-     </div>
-  </div>
+          </a>
+      </div>
+    </div>
+</div>
 
   <!-- Botón siguiente (right) -->
-  <button id="slider-button-right" class="swiper-button-next group flex justify-center items-center  text-cafe-claro hover:text-cafe-oscuro absolute top-1/2 right-1 transform -translate-y-1/2"></button>
+  <button id="slider-button-right" class="swiper-button-next group flex justify-center items-center  text-cafe-oscuro hover:text-oliva absolute top-1/2 right-1 transform -translate-y-1/2"></button>
+</div> 
+
+<div class="relative overflow-hidden">
+  <div class="grid grid-cols-1 md:grid-cols-2 max-w-screen-lg mx-auto">
+    
+    <!-- Sección de la imagen -->
+    <div class="w-full flex flex-col items-center md:items-end md:pr-16 px-6">
+      <h2 class="text-cafe-oscuro font-bold text-xl md:text-2xl max-w-xs text-center md:text-right mb-6 md:mb-12 mt-10">
+        ¿Buscás tu próxima lectura?
+      </h2>
+      <div class="h-64 md:h-full mt-auto overflow-hidden relative">
+        <img src="../../../assets/img/hero/bookandcofee.jpeg" class="h-full w-full object-cover md:object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- Sección de texto -->
+    <div class="py-16 md:py-20 bg-slate-100 relative before:absolute before:h-full before:w-screen before:bg-oliva before:top-0 before:left-0">
+      <div class="relative z-20 px-6 md:pl-12">
+        <h2 class="text-cafe-claro font-black text-3xl md:text-5xl leading-snug mb-6 md:mb-10">
+          En EditoriApp tenemos historias para todos
+        </h2>
+        <p class="text-white text-base md:text-sm">
+          Sumergite en mundos fascinantes, descubrí nuevas historias y dejate llevar por los libros a lugares que nunca imaginaste. Desde clásicos hasta las últimas novedades, tenemos una selección pensada para todos los que aman la lectura. Chusmeá, elegí y disfrutá.
+        </p>
+        <button routerLink="/books" class="mt-6 md:mt-8 text-white uppercase py-3 text-sm px-8 md:px-10 border border-white hover:bg-white hover:bg-opacity-10">
+          Descubrí más historias
+        </button>
+      </div>
+    </div>
+
+  </div>
 </div>
+
+
+<!-- <div class="relative overflow-hidden">
+  <div class="grid grid-cols-2 max-w-screen-lg mx-auto">
+    
+    <div class="py-20 bg-slate-100 relative before:absolute before:h-full before:w-screen before:bg-cafe-intermedio before:top-0 before:right-0">
+      <div class="relative z-20 pr-12">
+        <h2 class="text-cafe-oscuro font-black text-5xl leading-snug mb-10">Te los presentamos</h2>
+        <p class="text-cafe-oscuro text-sm">
+          Conocé a los autores, sus inspiraciones y el proceso creativo que da vida a las páginas que tanto disfrutás. Porque cada historia tiene un origen, y queremos que la descubras de primera mano.
+        </p>
+        <button routerLink="/authors" class="mt-8 text-cafe-oscuro uppercase py-3 text-sm px-10 border border-cafe-oscuro hover:bg-white hover:bg-opacity-10">Explorá los autores</button>
+      </div>
+    </div>
+    <div class="w-full flex flex-col pl-16">
+      <h2 class="text-oliva font-bold text-2xl max-w-xs text-left mb-12 mt-10">¿Querés conocer más sobre los autores?</h2>
+      <div class="h-full mt-auto overflow-hidden relative">
+        <img src="../../../assets/img/hero/authors.webp" class="h-full w-full object-contain" alt="">
+      </div>
+    </div>
+
+  </div>
+</div> -->

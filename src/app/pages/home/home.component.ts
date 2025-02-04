@@ -3,21 +3,26 @@ import { CommonModule } from '@angular/common';
 import { Component, AfterViewInit, inject } from '@angular/core';
 import Swiper, { Navigation, Pagination } from 'swiper';
 import { GenreService } from '../../services/genres.service';
-import { HeroComponent } from "../../components/hero/hero/hero.component";
+import { RouterLink } from '@angular/router';
+import { BookService } from '../../services/books.service';
+import { Book } from '../../interfaces/Book';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HeroComponent],
+  imports: [CommonModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements AfterViewInit {
   private genreService = inject(GenreService);
+  private bookService = inject(BookService);
   genres: Genre[] = [];
+  books: Book[] = [];
 
   ngOnInit(): void {
     this.getGenres();
+    this.getBooksPaginated(1, 8);
   }
 
   ngAfterViewInit(): void {
@@ -50,11 +55,17 @@ export class HomeComponent implements AfterViewInit {
     });
   }
 
+  getBooksPaginated(page: number, limit: number) {
+    this.bookService.getAll(page, limit).subscribe(response => {
+      this.books = response.data.items;
+    });
+  }
+
   getGenres(): void {
     this.genreService.getAll().subscribe({
       next: (response) => {
         this.genres = response.data.genres;
       }
     });
-  }
+  } 
 }

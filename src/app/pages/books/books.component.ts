@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Book } from '../../interfaces/Book';
 import { BookService } from '../../services/books.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from './../../components/pagination/pagination.component';
@@ -33,10 +33,25 @@ export class BooksComponent implements OnInit {
   private bookService = inject(BookService);
   private genreService = inject(GenreService);
   private shoppingCartService = inject(ShoppingCartService)
-  private router = inject(Router);
+  //private router = inject(Router);
+  private route = inject(ActivatedRoute);
+
+  // ngOnInit(): void {
+  //   this.getBooksPaginated(this.currentPage, 12);
+  //   this.getGenres();
+  // }
 
   ngOnInit(): void {
-    this.getBooksPaginated(this.currentPage, 12);
+    this.route.queryParams.subscribe(params => {
+      const genreId = params['genre'];
+      if (genreId) {
+        this.selectedCategories = [parseInt(genreId, 10)];
+        this.search(this.currentPage, 12, '', this.selectedCategories);
+      }
+      else{
+        this.getBooksPaginated(this.currentPage, 12);
+      }
+    });
     this.getGenres();
   }
 

@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   navLinks = [
     { href: 'authors', text: 'Autores' },
     { href: 'books', text: 'Libros' },
-    { href: '#review', text: 'Sobre Nosotros' }
+    { href: 'about', text: 'Sobre Nosotros' }
   ];
   quantityInCart = 0;
   cart: ShoppingCart | null = null;

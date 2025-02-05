@@ -33,7 +33,7 @@ export class LoginComponent {
     this.authService.login(email, password).subscribe({
       next: response => {
         this.user = response.data;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/admin']);
       },
       error: err => {
         console.error('Login error:', err);

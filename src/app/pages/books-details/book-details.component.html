@@ -1,59 +1,61 @@
 <div class="container bg-crema text-cafe-oscuro py-20 mt-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 grid-rows-5 gap-4">
-        <!-- Columna 1 -->
-        <div class="row-span-5">
-            <img [src]="'../../../assets/img/books/' + book.photo" alt="Portada del libro">
-            <div class="flex flex-col justify-center items-center bg-white mt-2 rounded-md">
-                <p class="text-lg font-bold p-2">${{book.price}}</p>
-                <div (click)="addToShoppingCart(book)" class="rounded-b-md bg-green-600 text-white font-semibold w-full flex flex-row gap-2 justify-center p-1 cursor-pointer">
-                    <button>Añadir al carrito</button>
-                    <i class="ri-shopping-cart-2-line"></i>
+    <div class="min-h-screen">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 grid-rows-5 gap-4">
+            <!-- Columna 1 -->
+            <div class="row-span-5">
+                <img [src]="'../../../assets/img/books/' + book.photo" alt="Portada del libro">
+                <div class="flex flex-col justify-center items-center bg-white mt-2 rounded-md">
+                    <p class="text-lg font-bold p-2">${{book.price}}</p>
+                    <div (click)="addToShoppingCart(book)" class="rounded-b-md bg-green-600 text-white font-semibold w-full flex flex-row gap-2 justify-center p-1 cursor-pointer">
+                        <button>Añadir al carrito</button>
+                        <i class="ri-shopping-cart-2-line"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna 2 -->
+            <div class="col-span-1 lg:col-span-3 row-span-5">
+                <div class="p-2">
+                    <h3 class="font-bold text-slate-800 mb-1">{{book.title}}</h3>
+                    <a [href]="'author/' + book.author?.id">
+                        <h4 class="text-oliva font-semibold mb-3 cursor-pointer">{{book.author?.name}} {{book.author?.lastName}}</h4>
+                    </a>
+                    <p>{{book.review}}</p>
+                </div>
+            </div>
+
+            <!-- Columna 3 -->
+            <div class="row-span-5 col-span-1 md:col-span-2 lg:col-start-5">
+                <div class="rounded-md bg-oliva p-1">
+                    <div class="p-2 flex flex-col items-center justify-center">
+                        <div class="flex flex-col items-center justify-center m-3">
+                            <i class="ri-book-3-line text-yellow-500 text-4xl"></i>
+                            <h4 class="font-bold font-Jost text-yellow-500 text-xl">N.º Páginas</h4> 
+                            <p class="font-semibold text-white">{{book.pagesNumber}}</p>
+                        </div>
+                        <div class="flex flex-col items-center justify-center m-3">
+                            <i class="ri-barcode-box-line text-yellow-500 text-4xl"></i>
+                            <h4 class="font-bold font-Jost text-yellow-500 text-xl">ISBN</h4> 
+                            <p class="font-semibold text-white">{{book.isbn}}</p>
+                        </div>
+                        <div class="flex flex-col items-center justify-center m-3">
+                            <i class="ri-bookmark-line text-yellow-500 text-4xl"></i>
+                            <h4 class="font-bold font-Jost text-yellow-500 text-xl">Formato</h4> 
+                            <p class="font-semibold text-white">{{book.edition?.description}}</p>
+                        </div>
+                        <div class="flex flex-col items-center justify-center m-3">
+                            <i class="ri-calendar-2-line text-yellow-500 text-4xl"></i>
+                            <h4 class="font-bold font-Jost text-yellow-500 text-xl">Año</h4> 
+                            <p class="font-semibold text-white">{{book.year}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Columna 2 -->
-        <div class="col-span-1 lg:col-span-3 row-span-5">
-            <div class="p-2">
-                <h3 class="font-bold text-slate-800 mb-1">{{book.title}}</h3>
-                <a [href]="'author/' + book.author?.id">
-                    <h4 class="text-oliva font-semibold mb-3 cursor-pointer">{{book.author?.name}} {{book.author?.lastName}}</h4>
-                </a>
-                <p>{{book.review}}</p>
-            </div>
-        </div>
-
-        <!-- Columna 3 -->
-        <div class="row-span-5 col-span-1 md:col-span-2 lg:col-start-5">
-            <div class="rounded-md bg-oliva p-1">
-                <div class="p-2 flex flex-col items-center justify-center">
-                    <div class="flex flex-col items-center justify-center m-3">
-                        <i class="ri-book-3-line text-yellow-500 text-4xl"></i>
-                        <h4 class="font-bold font-Jost text-yellow-500 text-xl">N.º Páginas</h4> 
-                        <p class="font-semibold text-white">{{book.pagesNumber}}</p>
-                    </div>
-                    <div class="flex flex-col items-center justify-center m-3">
-                        <i class="ri-barcode-box-line text-yellow-500 text-4xl"></i>
-                        <h4 class="font-bold font-Jost text-yellow-500 text-xl">ISBN</h4> 
-                        <p class="font-semibold text-white">{{book.isbn}}</p>
-                    </div>
-                    <div class="flex flex-col items-center justify-center m-3">
-                        <i class="ri-bookmark-line text-yellow-500 text-4xl"></i>
-                        <h4 class="font-bold font-Jost text-yellow-500 text-xl">Formato</h4> 
-                        <p class="font-semibold text-white">{{book.edition?.description}}</p>
-                    </div>
-                    <div class="flex flex-col items-center justify-center m-3">
-                        <i class="ri-calendar-2-line text-yellow-500 text-4xl"></i>
-                        <h4 class="font-bold font-Jost text-yellow-500 text-xl">Año</h4> 
-                        <p class="font-semibold text-white">{{book.year}}</p>
-                    </div>
-                </div>
-            </div>
+        <div *ngIf="showToast" class="bg-green-600 py-2 px-4 rounded-md text-white text-center fixed top-20 right-4 flex gap-4">
+            <p>{{ toastMessage }}</p>
+            <span class="cursor-pointer font-bold" onclick="return this.parentNode.remove()"><sup>X</sup></span>
         </div>
     </div>
-
-    <div *ngIf="showToast" class="bg-green-600 py-2 px-4 rounded-md text-white text-center fixed top-20 right-4 flex gap-4">
-        <p>{{ toastMessage }}</p>
-        <span class="cursor-pointer font-bold" onclick="return this.parentNode.remove()"><sup>X</sup></span>
-      </div>
 </div>

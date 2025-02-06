@@ -36,4 +36,20 @@ import { Auth } from '../interfaces/Auth';
             { withCredentials: true }
         );
     }
+
+    requestResetPassword(email: string): Observable<Response<null>> {
+        return this.http.post<Response<null>>(`${this.apiUrl}/requestresetpassword`,
+            {
+                email: email
+            }
+        );
+    }
+
+    resetPassword(token: string, newPassword: string): Observable<Response<null>> {
+        return this.http.post<Response<null>>(`${this.apiUrl}/resetpassword`,
+            {
+                token, newPassword
+            }
+        );
+    }
 }

@@ -18,6 +18,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard/dashb
 import { BookDetailsComponent } from './pages/books-details/book-details.component';
 import { CartDetailsComponent } from './pages/cart-details/cart-details/cart-details.component';
 import { AboutComponent } from './pages/about/about.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 export const routes: Routes = [
     {
@@ -40,6 +41,7 @@ export const routes: Routes = [
         component: PublicLayoutComponent,
         children: [
             { path: 'login', component: LoginComponent },
+            { path: 'reset-password', component: ResetPasswordComponent },
             // { path: 'register', component: RegisterComponent },
             { path: 'home', component: HomeComponent },
             { path: 'authors', component: AuthorsComponent },

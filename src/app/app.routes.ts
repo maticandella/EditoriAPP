@@ -43,15 +43,14 @@ export const routes: Routes = [
             { path: 'login', component: LoginComponent },
             // { path: 'reset-password', component: ResetPasswordComponent },
             // { path: 'register', component: RegisterComponent },
-            { path: 'home', component: HomeComponent },
+            { path: '', component: HomeComponent },
             { path: 'authors', component: AuthorsComponent },
             { path: 'author/:id', component: AuthorDetailsComponent },
             { path: 'books', component: BooksComponent },
             { path: 'book/:id', component: BookDetailsComponent },
             { path: 'cart', component: CartDetailsComponent },
             { path: 'about', component: AboutComponent },
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: '**', redirectTo: 'home' },
+            { path: '**', redirectTo: ''},
         ]
       }
 ];
